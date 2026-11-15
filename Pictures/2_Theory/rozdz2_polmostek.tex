@@ -1,0 +1,19 @@
+% Schemat jednofazowego falownika polmostkowego
+\begin{circuitikz}[european, scale=0.9, transform shape, font=\small]
+  \draw (0,0) to[V, l=$U_\mathrm{DC}$, invert] (0,6);
+  \draw (0,6) -- (7.5,6);
+  \draw (0,0) -- (7.5,0);
+  \node[nmos, anchor=D] (Q1) at (2.4,6) {};
+  \node[nmos, anchor=S] (Q2) at (2.4,0) {};
+  \draw (Q1.S) -- (Q2.D);
+  \node[left] at (Q1.G) {$Q_1$};
+  \node[left] at (Q2.G) {$Q_2$};
+  \draw (3.3,3) to[D*, *-*] (3.3,6);
+  \draw (3.3,0) to[D*, *-*] (3.3,3);
+  \draw (2.4,3) node[circ]{} -- (3.3,3);
+  \node[above left] at (2.4,3) {a};
+  \draw (7.5,6) to[C, l=$C_1$, *-] (7.5,3) to[C, l=$C_2$, -*] (7.5,0);
+  \draw (7.5,3) node[circ]{} node[right]{0};
+  \draw (3.3,3) to[short, i>^=$i_\mathrm{o}$] (4.4,3) to[generic, l=$Z_\mathrm{o}$] (5.8,3) -- (7.5,3);
+  \draw[-{Latex[length=2mm]}] (6.9,2.4) -- node[below]{$u_\mathrm{o}$} (3.9,2.4);
+\end{circuitikz}

@@ -1,0 +1,14 @@
+% Widma amplitudowe napiecia u_o dla m_a = 0.8, m_f = 21 -- wygenerowane skryptem (FFT)
+\begin{tikzpicture}
+  \begin{groupplot}[group style={group size=1 by 2, vertical sep=14mm, xticklabels at=edge bottom},
+      width=0.92\textwidth, height=4.4cm, xmin=0, xmax=69, ymin=0, ymax=1.0,
+      ytick={0,0.2,0.4,0.6,0.8,1},
+      xtick={1,21,42,63}, xticklabels={$1$,$m_\mathrm{f}$,$2m_\mathrm{f}$,$3m_\mathrm{f}$},
+      tick label style={font=\footnotesize}, label style={font=\small},
+      ymajorgrids, grid style={gray!25}, ylabel={$\hat U_{\mathrm{o}(h)}/U_\mathrm{DC}$}]
+    \nextgroupplot[title={\small a) modulacja bipolarna}]
+      \addplot[ycomb, black, line width=1.6pt, mark=none] coordinates {(1,0.800) (19,0.220) (21,0.818) (23,0.220) (37,0.013) (39,0.139) (41,0.314) (43,0.314) (45,0.139) (47,0.013) (57,0.016) (59,0.104) (61,0.176) (63,0.171) (65,0.176) (67,0.104) (69,0.016)};
+    \nextgroupplot[title={\small b) modulacja unipolarna}, xlabel={rząd harmonicznej $h$}]
+      \addplot[ycomb, black, line width=1.6pt, mark=none] coordinates {(1,0.800) (37,0.013) (39,0.139) (41,0.314) (43,0.314) (45,0.139) (47,0.013)};
+  \end{groupplot}
+\end{tikzpicture}

@@ -1,0 +1,32 @@
+% Schemat jednofazowego falownika mostkowego (mostek H) z obciazeniem
+\begin{circuitikz}[european, scale=0.9, transform shape, font=\small]
+  \draw (0,0) to[V, l=$U_\mathrm{DC}$, invert] (0,6);
+  \draw (0,6) -- (9.4,6);
+  \draw (0,0) -- (9.4,0);
+  \draw (1.8,6) to[C, l_=$C_\mathrm{DC}$, *-*] (1.8,0);
+  \node[above] at (0.9,6) {P};
+  \node[below] at (0.9,0) {N};
+  % galaz A
+  \node[nmos, anchor=D] (Q1) at (3.6,6) {};
+  \node[nmos, anchor=S] (Q2) at (3.6,0) {};
+  \draw (Q1.S) -- (Q2.D);
+  \node[left] at (Q1.G) {$Q_1$};
+  \node[left] at (Q2.G) {$Q_2$};
+  \draw (4.5,3) to[D*, *-*] (4.5,6);
+  \draw (4.5,0) to[D*, *-*] (4.5,3);
+  \draw (3.6,3) node[circ]{} -- (4.5,3);
+  % galaz B
+  \node[nmos, anchor=D] (Q3) at (8.5,6) {};
+  \node[nmos, anchor=S] (Q4) at (8.5,0) {};
+  \draw (Q3.S) -- (Q4.D);
+  \node[left] at (Q3.G) {$Q_3$};
+  \node[left] at (Q4.G) {$Q_4$};
+  \draw (9.4,3) to[D*, -] (9.4,6);
+  \draw (9.4,0) to[D*, -*] (9.4,3);
+  \draw (8.5,3) node[circ]{} -- (9.4,3);
+  \node[above left] at (3.6,3) {a};
+  \node[above right] at (8.5,3) {b};
+  % obciazenie
+  \draw (4.5,3) to[short, i>^=$i_\mathrm{o}$] (5.6,3) to[generic, l=$Z_\mathrm{o}$] (6.9,3) -- (Q4.D |- 0,3);
+  \draw[-{Latex[length=2mm]}] (7.7,2.4) -- node[below]{$u_\mathrm{o}$} (5.0,2.4);
+\end{circuitikz}

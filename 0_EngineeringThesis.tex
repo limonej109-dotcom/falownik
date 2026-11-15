@@ -39,6 +39,11 @@
 
 \usepackage{tikz}
 \usetikzlibrary{arrows}
+\usetikzlibrary{arrows.meta}
+\usepackage{circuitikz}               % schematy elektryczne
+\usepackage{pgfplots}                 % wykresy
+\usepgfplotslibrary{groupplots}
+\pgfplotsset{compat=1.17}
 \usepackage{tabularray}
 \usepackage{siunitx,booktabs,array}
 
@@ -58,6 +63,10 @@
 \sisetup{locale = PL}
 
 \usepackage[numbers,sort&compress]{natbib}
+
+% Linia ze źródłem pod rysunkiem/tabelą: \zrodlo{opracowanie własne}
+\newcommand{\zrodlo}[1]{%
+  \par\vspace{3pt}{\centering\footnotesize Źródło: #1\par}}
 
 \def  \EQNSCALE {1.1}
 \def  \EQNTAB {1.1}
