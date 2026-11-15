@@ -1,8 +1,176 @@
 \chapter{Charakterystyka projektowanego stanowiska laboratoryjnego}
 \label{chap: Charakterystyka projektowanego stanowiska laboratoryjnego}
 
+W~rozdziale scharakteryzowano projektowane stanowisko laboratoryjne
+z~jednofazowym falownikiem napięcia. Określono wymagania funkcjonalne,
+parametry elektryczne układu, wymagania dotyczące bezpieczeństwa
+użytkowania oraz wymagania dydaktyczne, a~następnie przedstawiono
+architekturę stanowiska, wynikającą z~tych wymagań. Sformułowane tu
+założenia stanowią punkt wyjścia do doboru elementów obwodu mocy, opisanego
+w~rozdziale~\ref{chap: Dobór elementów obwodu mocy falownika}.
+
+% ---------------------------------------------------------------------
 \section{Wymagania funkcjonalne}
 \label{sec: Wymagania funkcjonalne}
+
+Projektowane stanowisko ma umożliwić praktyczne zapoznanie się z~pracą
+jednofazowego falownika napięcia w~układzie mostka~H oraz doświadczalną
+weryfikację zjawisk omówionych w~rozdziale~\ref{chap: Falowniki jednofazowe - podstawy teoretyczne}.
+Stanowi ono uzupełnienie zajęć symulacyjnych z~falowników
+jednofazowych~\cite{instrukcja}, w~trakcie których badane są modele
+falowników sterowanych metodą przebiegu prostokątnego, metodą modulacji
+szerokości pojedynczego impulsu w~półokresie oraz metodami bipolarnej
+i~unipolarnej modulacji SPWM. Stanowisko powinno pozwalać na
+odtworzenie tych samych przebiegów w~rzeczywistym układzie, a~także na
+obserwację zjawisk pomijanych w~modelach idealnych, takich jak procesy
+łączeniowe tranzystorów, wpływ czasu martwego, straty mocy czy zakłócenia
+związane z~szybkimi zmianami napięcia.
+
+W~wymaganiach funkcjonalnych określono, \emph{jakie funkcje} ma realizować
+stanowisko, bez wskazywania konkretnych wartości liczbowych. Parametry
+elektryczne zestawiono w~podrozdziale~\ref{sec: Parametry elektryczne projektowanego układu},
+a~szczegółowe wymagania dotyczące bezpieczeństwa i~dydaktyki --
+w~podrozdziałach~\ref{sec: Wymagania dotyczące bezpieczeństwa użytkowania}
+i~\ref{sec: Wymagania dydaktyczne}. Przyjęto następujące wymagania
+funkcjonalne.
+
+\begin{enumerate}[label=\textbf{F\arabic*.}, leftmargin=*, itemsep=4pt]
+
+  \item \textbf{Przekształcanie energii prądu stałego na energię prądu
+    przemiennego.} Stanowisko ma pracować jako falownik napięcia w~układzie
+    pełnego mostka (dwie gałęzie łącznikowe, tranzystory $Q_1$--$Q_4$).
+    Obwód pośredniczący należy zasilać z~zewnętrznego zasilacza
+    laboratoryjnego o~regulowanym napięciu, a~nie bezpośrednio z~sieci
+    elektroenergetycznej. Pozwala to rozpoczynać pracę od niskiego napięcia
+    $U_\mathrm{DC}$ i~zwiększać je stopniowo oraz ograniczać prąd pobierany
+    przez układ nastawą zasilacza. Ponieważ zasilacz laboratoryjny zwykle
+    nie może przyjmować energii, energię zwracaną z~obciążenia
+    o~charakterze indukcyjnym musi przejmować kondensator obwodu
+    pośredniczącego $C_\mathrm{DC}$.
+
+  \item \textbf{Niezależne sterowanie każdym z~czterech tranzystorów.}
+    Każdy tranzystor mostka ma mieć własny, galwanicznie odizolowany kanał
+    sterowania bramkowego, zasilany z~osobnego izolowanego źródła. Takie
+    rozwiązanie, w~odróżnieniu od zasilania typu \textit{bootstrap}, nie
+    nakłada ograniczeń na współczynnik wypełnienia ani na czas, przez jaki
+    tranzystor górny może pozostawać załączony. Umożliwia to realizację
+    dowolnego schematu łączeń, w~tym sterowania przebiegiem prostokątnym
+    o~częstotliwości $f_1$, w~którym każdy tranzystor przewodzi przez
+    połowę okresu napięcia wyjściowego, a~także pracę statyczną, np.~przy
+    sprawdzaniu poszczególnych tranzystorów.
+
+  \item \textbf{Realizacja różnych metod sterowania.} Stanowisko ma
+    umożliwiać sterowanie falownikiem co najmniej metodami opisanymi
+    w~podrozdziale~\ref{sec: Metody modulacji PWM}: przebiegiem
+    prostokątnym, modulacją szerokości pojedynczego impulsu (przez
+    przesunięcie fazowe sygnałów sterujących gałęzi) oraz bipolarną
+    i~unipolarną modulacją SPWM. Zmiana metody sterowania nie powinna
+    wymagać zmian w~obwodzie mocy, a~jedynie zmiany sygnałów sterujących.
+
+  \item \textbf{Regulacja parametrów sterowania.} Użytkownik ma mieć
+    możliwość zmiany częstotliwości podstawowej $f_1$, współczynnika
+    modulacji amplitudowej $m_\mathrm{a}$, częstotliwości łączeń
+    $f_\mathrm{s}$ oraz czasu martwego $t_\mathrm{d}$. Regulacja
+    $m_\mathrm{a}$ powinna obejmować również zakres nadmodulacji, a~regulacja
+    $t_\mathrm{d}$ -- wartości wyraźnie większe od minimalnych, tak aby
+    można było obserwować zniekształcenia napięcia wyjściowego wywołane
+    czasem martwym.
+
+  \item \textbf{Oddzielenie części sterującej od obwodu mocy.} Sygnały
+    sterujące tranzystorami mają być doprowadzane do stanowiska jako
+    sygnały logiczne z~zewnętrznego układu sterującego (mikrokontrolera lub
+    generatora sygnałów). Wejścia sterujące oraz obwody pomiarowe
+    i~zabezpieczające po stronie układu sterującego mają być galwanicznie
+    odizolowane od obwodu mocy. Dzięki temu układ sterujący, komputer
+    i~przyrządy pomiarowe użytkownika nie są narażone na potencjały
+    występujące w~mostku.
+
+  \item \textbf{Zasilanie różnych odbiorników.} Do wyjścia falownika ma
+    być możliwe dołączenie obciążenia rezystancyjnego,
+    rezystancyjno-indukcyjnego oraz filtru wyjściowego LC. Pozwala to
+    porównać przebiegi prądu wyjściowego $i_\mathrm{o}$ i~napięcia
+    wyjściowego $u_\mathrm{o}$ przed filtrem i~za nim oraz zbadać wpływ
+    indukcyjności $L_\mathrm{f}$ na tętnienia prądu.
+
+  \item \textbf{Dostęp do sygnałów pomiarowych.} Stanowisko ma zapewniać
+    łatwy dostęp do punktów pomiarowych, umożliwiających rejestrację
+    oscyloskopem co najmniej: napięć gałęzi $u_\mathrm{aN}$
+    i~$u_\mathrm{bN}$, napięcia wyjściowego $u_\mathrm{o}$, prądu
+    wyjściowego $i_\mathrm{o}$, napięcia obwodu pośredniczącego
+    $U_\mathrm{DC}$ oraz sygnałów sterujących tranzystorami. Prąd
+    wyjściowy ma być mierzony w~układzie wbudowanym, dającym sygnał
+    napięciowy proporcjonalny do prądu, co pozwala obserwować go bez
+    sondy prądowej.
+
+  \item \textbf{Możliwość pomiaru sprawności.} Zaciski wejściowe
+    i~wyjściowe falownika mają umożliwiać dołączenie przyrządów do pomiaru
+    mocy pobieranej z~zasilacza i~mocy oddawanej do obciążenia, tak aby
+    można było wyznaczyć sprawność przekształtnika w~funkcji obciążenia.
+
+  \item \textbf{Zabezpieczenia i~sygnalizacja stanu.} Stanowisko ma
+    samoczynnie blokować pracę tranzystorów po przekroczeniu
+    dopuszczalnego prądu, niezależnie od oprogramowania układu
+    sterującego, oraz informować układ sterujący o~zadziałaniu
+    zabezpieczenia. Tranzystory nie mogą być załączane, gdy napięcie
+    zasilania sterowników bramkowych jest zbyt niskie. Po wyłączeniu
+    stanowiska kondensator obwodu pośredniczącego ma być samoczynnie
+    rozładowywany, a~stan pracy układu (obecność napięcia, zadziałanie
+    zabezpieczeń) ma być sygnalizowany optycznie. Szczegółowe wymagania
+    przedstawiono w~podrozdziale~\ref{sec: Wymagania dotyczące bezpieczeństwa użytkowania}.
+
+  \item \textbf{Łatwa wymiana łączników.} Tranzystory mocy mają być
+    montowane w~sposób umożliwiający ich wymianę bez lutowania. Pozwala to
+    szybko wymienić uszkodzony element, a~także porównywać pracę
+    falownika z~tranzystorami różnych typów.
+
+\end{enumerate}
+
+Zestawienie wymagań funkcjonalnych wraz ze wskazaniem miejsc pracy,
+w~których opisano sposób ich realizacji i~weryfikacji, przedstawiono
+w~tabeli~\ref{tab:wymagania-funkcjonalne}.
+
+\begin{table}[htb]
+  \centering
+  \caption{Zestawienie wymagań funkcjonalnych projektowanego stanowiska}
+  \label{tab:wymagania-funkcjonalne}
+  \small
+  \begin{tabular}{@{}C{10mm} L{80mm} L{55mm}@{}}
+    \toprule
+    \textbf{Nr} & \textbf{Wymaganie} & \textbf{Realizacja / weryfikacja} \\
+    \midrule
+    F1  & Przekształcanie DC/AC w~układzie mostka~H, zasilanie z~zasilacza
+          laboratoryjnego
+        & podrozdz.~\ref{sec: Architektura projektowanego stanowiska},
+          \ref{sec: Dobór kondensatorów magistrali DC} \\
+    F2  & Niezależne, izolowane sterowanie każdego z~tranzystorów $Q_1$--$Q_4$
+        & podrozdz.~\ref{sec: Dobór sterowników bramkowych} \\
+    F3  & Sterowanie przebiegiem prostokątnym, pojedynczym impulsem oraz
+          SPWM bipolarną i~unipolarną
+        & podrozdz.~\ref{sec: Analiza przebiegów napięć i prądów},
+          \ref{sec: Przebiegi napięć i prądów} \\
+    F4  & Regulacja $f_1$, $m_\mathrm{a}$, $f_\mathrm{s}$ i~$t_\mathrm{d}$
+        & podrozdz.~\ref{sec: Możliwe ćwiczenia laboratoryjne} \\
+    F5  & Izolacja galwaniczna części sterującej od obwodu mocy
+        & podrozdz.~\ref{sec: Architektura projektowanego stanowiska},
+          \ref{sec: Projekt obwodu drukowanego} \\
+    F6  & Obciążenie R, RL oraz filtr wyjściowy LC
+        & podrozdz.~\ref{sec: Przebiegi napięć i prądów} \\
+    F7  & Punkty pomiarowe napięć, prądu i~sygnałów sterujących
+        & podrozdz.~\ref{sec: Projekt obwodu drukowanego},
+          \ref{sec: Stanowisko pomiarowe} \\
+    F8  & Pomiar sprawności przekształtnika
+        & podrozdz.~\ref{sec: Badanie sprawności przekształtnika} \\
+    F9  & Zabezpieczenie nadprądowe i~podnapięciowe, rozładowanie
+          $C_\mathrm{DC}$, sygnalizacja stanu
+        & podrozdz.~\ref{sec: Wymagania dotyczące bezpieczeństwa użytkowania},
+          \ref{sec: Ocena działania zabezpieczeń} \\
+    F10 & Wymiana tranzystorów bez lutowania
+        & podrozdz.~\ref{sec: Projekt obwodu drukowanego} \\
+    \bottomrule
+  \end{tabular}
+  \zrodlo{opracowanie własne}
+\end{table}
+
 
 \section{Parametry elektryczne projektowanego układu}
 \label{sec: Parametry elektryczne projektowanego układu}
