@@ -1,0 +1,298 @@
+\documentclass{Config/EngineeringThesis}   % options: auxsup, secsup, pl, en
+\usepackage{enumerate}
+\usepackage{enumitem}
+
+\usepackage{caption}
+\usepackage{indentfirst}
+\usepackage[left=30mm, top=20mm, right=20mm, bottom=20mm]{geometry}
+
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage{titlesec}
+\usepackage[polish]{babel} 
+\addto\captionsenglish{\renewcommand{\figurename}{Fig.}}
+\addto\captionspolish{\renewcommand{\figurename}{Rys.}}
+\usepackage[labelsep=period]{caption}
+\usepackage[format=plain, labelfont={it}, textfont=it]{caption}
+\usepackage{notoccite}
+\usepackage{tocloft}
+\setlength{\cftbeforetoctitleskip}{-3em}
+\usepackage[inkscapelatex=false]{svg}
+
+% Tables
+\usepackage{array}
+\usepackage{longtable}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\usepackage{makecell}
+\usepackage{diagbox}
+\usepackage{caption, threeparttable}
+
+\usepackage{subcaption}
+\usepackage{graphicx}           
+\usepackage{lipsum} 
+\usepackage{environ} 
+\usepackage{float}
+\usepackage{pdfpages}
+
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{tabularray}
+\usepackage{siunitx,booktabs,array}
+
+\usepackage{amsmath}
+\usepackage{arydshln}
+\usepackage{bigints}
+\usepackage{relsize}
+\usepackage{mathtools}
+\usepackage{moresize}
+\usepackage{nicefrac}
+
+\usepackage{pdflscape}
+\usepackage{keyval}
+
+\usepackage{textcomp}
+\usepackage{siunitx}
+\sisetup{locale = PL}
+
+\usepackage[numbers,sort&compress]{natbib}
+
+\def  \EQNSCALE {1.1}
+\def  \EQNTAB {1.1}
+\NewEnviron{EQNSIZE}{% 
+    \scalebox{\EQNSCALE}{$\BODY$} 
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--------------------------------xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+
+
+
+
+
+% ###################### Chapter name formatting ##############################################
+
+\makeatletter
+\def\@makechapterhead#1{
+  {\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+        %\Huge\bfseries \MakeUppercase\@chapapp\space \thechapter:   \space
+        \Huge\bfseries \MakeUppercase \thechapter.   \space
+        %\par\nobreak
+        %\vskip 20\p@
+    \fi
+    \interlinepenalty\@M
+    \huge \bfseries #1\par\nobreak
+    %\vskip 20\p@
+  }}
+\makeatother
+
+% ###################### End of chapter name formatting ########################################
+
+% polish if the pl option is used
+\usepackage[nottoc,notlof,notlot]{tocbibind}
+%\usepackage[nottoc]{tocbibind}
+\usepackage{multirow}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+    colorlinks=false,
+    linkcolor=black,
+    filecolor=black,      
+    urlcolor=black
+}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}{Definition}[chapter]
+
+\graphicspath{{./Pictures/}}
+
+
+
+
+%---------------------------------------------------------------------------
+% University name:
+\universitynamepl {Akademia Górniczo-Hutnicza im. Stanisława Staszica w Krakowie}
+\universitynameen {AGH University of Krakow}
+
+% Faculty name:
+\facultynamepl {Wydział Elektrotechniki, Automatyki, Informatyki i Inżynierii Biomedycznej}
+\facultynameen {Faculty of Electrical Engineering, Automatics, Computer Science and Biomedical Engineering}
+
+% field of study:
+\fieldofstudypl {Elektrotechnika}
+\fieldofstudyen {Electrical Engineering}
+
+% title of the engineering project:
+\titlepl{Tytuł projektu inżynierskiego}
+\titleen{Project title in English}
+ 
+
+
+% Author names and surname: 
+\authorpl{Jan Antoni Nowak}
+\authoren{Jan Antoni Nowak}
+
+% first supervisor name with degrees:
+\supervisorpl{dr inż. Jan Nowak}
+\supervisoren{Jan Nowak, PhD}
+
+% second supervisor (or auxiliary supervisor) name with degress:
+%\secondsupervisor{Prof. dr hab. inż. Adam Iksiński} 
+\secondsupervisorpl{}
+\secondsupervisoren{}
+
+\date{202x}
+
+\acknowledgementspl{Specjalne podziękowania dla \dots}
+\acknowledgementsen{Special thanks to \dots}
+
+\setlength{\cftsecnumwidth}{10mm}
+\allowdisplaybreaks
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{1,1,1}
+
+\lstdefinestyle{mystyle_listing}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    frame = single
+}
+
+\lstset{style=mystyle_listing}
+
+\lstset{
+  literate={ą}{{\k a}}1
+  		     {Ą}{{\k A}}1
+           {ż}{{\. z}}1
+           {Ż}{{\. Z}}1
+           {ź}{{\' z}}1
+           {Ź}{{\' Z}}1
+           {ć}{{\' c}}1
+           {Ć}{{\' C}}1
+           {ę}{{\k e}}1
+           {Ę}{{\k E}}1
+           {ó}{{\' o}}1
+           {Ó}{{\' O}}1
+           {ń}{{\' n}}1
+           {Ń}{{\' N}}1
+           {ś}{{\' s}}1
+           {Ś}{{\' S}}1
+           {ł}{{\l}}1
+           {Ł}{{\L}}1
+}
+
+\begin{document}
+
+\frontmatter
+
+\thesistitlepagepl
+%\thesistitlepageen
+
+\pagenumbering{gobble}
+\include{abstract-pl}  % abstract in English 
+\pagenumbering{gobble}
+\include{abstract-en}  % abstract in Polish
+\cleardoublepage
+
+\makeatletter
+\renewcommand\tableofcontents{%
+    \if@twocolumn
+      \@restonecoltrue\onecolumn
+    \else
+      \@restonecolfalse
+    \fi
+    \chapter*{\vspace{0cm}\contentsname
+        \@mkboth{%
+           \MakeUppercase\contentsname}{\MakeUppercase\contentsname}}%
+    \@starttoc{toc}%
+    \if@restonecol\twocolumn\fi
+    }
+\makeatother
+
+\tableofcontents%\thispagestyle{empty}\newpage
+
+\cleardoublepage
+%\listoffigures
+%\cleardoublepage
+
+%**********************************************************
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter:\ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\fancyhf{}
+\fancyhead{}
+\fancyhead[OR]{\small \MakeUppercase{\chaptername}\space\leftmark}
+\fancyhead[EL]{\small \MakeUppercase{\chaptername}\space\leftmark}
+%\fancyhead[L]{\small \chaptername \space \thechapter: \chaptertitlename}
+%\fancyhead[R]{\bfseries \thepage}
+\fancyfoot[C]{\bfseries \thepage}
+%\thesisfoot
+
+\newenvironment{conditions}
+{\par\vspace{5pt}\begin{tabular}{>{$}l<{$} @{${}-{}$} l}}
+  {\end{tabular}\par\vspace{\belowdisplayskip}}
+  
+  %{\par\vspace{\abovedisplayskip}\noindent\begin{tabular}{>{$}l<{$} @{${}-{}$} l}}
+  %{\end{tabular}\par\vspace{\belowdisplayskip}}
+
+
+
+%**************************************************************
+
+\renewcommand{\UrlFont}{\normalfont}
+
+
+\mainmatter
+\addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
+
+
+% add your chapter here
+\include{Text/3_Acronyms}
+\include{Text/4_Symbols}
+\include{Text/5_Introduction}
+\include{Text/6_1_OnePhaseInverters-Theory.tex}
+\include{Text/6_2_CharacteristicsOfLaboratorySetup.tex}
+\include{Text/6_3_PowerCircuitProject.tex}
+\include{Text/6_4_Simulations.tex}
+\include{Text/6_5_InverterPrototype.tex}
+\include{Text/6_6_Experiment.tex}
+\include{Text/6_7_DidacticInverterUsage.tex}
+\include{Text/7_Summary}
+
+
+\bibliographystyle{Config/IEEEtranDOI}
+\bibliography{Config/Bibliography}
+\include{Text/AuthorsStatement}
+
+
+
+
+\end{document}
+%---------------------------------------------------------------------------
+
+
