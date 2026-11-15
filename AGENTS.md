@@ -36,9 +36,11 @@ Język pracy i komunikacji: **polski**, z pełną terminologią techniczną.
 - Strona tytułowa wymaga fontów *Inter* i *TeX Gyre Heros* oraz pakietu `svg`
   (logo AGH). Przy kompilacji lokalnej bez tych fontów można tymczasowo
   zakomentować `\thesistitlepagepl` — **nie commitować tej zmiany**.
-- Znany problem z szablonu: BibTeX zgłasza błąd w `Config/IEEEtranDOI.bst`
-  (linia 1440, `"$" can't follow a literal`). Bibliografia mimo to generuje się
-  poprawnie.
+- Plik `latexmkrc` wymusza XeLaTeX także wtedy, gdy w Overleafie wybrano
+  pdfLaTeX. Nie usuwać go.
+- Literówka w `Config/IEEEtranDOI.bst` (linia 1440: `"t"$` zamiast
+  `"t" change.case$`) została poprawiona 2026-11-16. Wcześniej przez nią
+  BibTeX kończył się błędem, a latexmk przerywał kompilację.
 - Znany problem z szablonu: `\titleformat{\chapter}` w `Text/4_Symbols.tex`
   działa także na kolejne rozdziały, przez co rozdziały wyświetlają się bez
   numeru. Do decyzji autora.

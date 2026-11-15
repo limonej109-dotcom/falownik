@@ -1437,7 +1437,7 @@ FUNCTION {format.article.title}
 { title duplicate$ empty$ 'skip$
     { this.to.prev.status
       this.status.std
-      "t"$
+      "t" change.case$
     }
   if$
   "title" bibinfo.check
