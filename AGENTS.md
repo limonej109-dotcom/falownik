@@ -133,7 +133,8 @@ z autorem, czy nadal są aktualne.
   izolowane kanały sterowania bramkowego.
 - **Zasilanie obwodu DC:** z zasilacza laboratoryjnego (nie z prostownika
   sieciowego). Maksymalnie **100 V / 10 A**, częstotliwość wyjściowa **50 Hz**.
-- **Kondensatory DC:** 4,4 mF (2 × 2200 µF, elektrolityczne). Rozładowanie
+- **Kondensatory DC:** 2,2 mF (1 × 2200 µF, elektrolityczny; zmniejszone z 4,4 mF
+  ze względów konstrukcyjnych – brak miejsca na płytce mocy, autor 2026-11-16). Rozładowanie
   przyciskiem SW1 przez rezystory R37–R41 (5 × 120 Ω), dioda D3 sygnalizuje
   napięcie (potwierdzone przez autora 2026-11-16, zgodne ze schematem).
 - **Tranzystory:** IRFP260MPbF (TO-247AC, 200 V, 50 A, R_DS(on) ≤ 40 mΩ,
