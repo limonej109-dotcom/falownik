@@ -133,15 +133,17 @@ z autorem, czy nadal są aktualne.
   izolowane kanały sterowania bramkowego.
 - **Zasilanie obwodu DC:** z zasilacza laboratoryjnego (nie z prostownika
   sieciowego). Maksymalnie **100 V / 10 A**, częstotliwość wyjściowa **50 Hz**.
-- **Kondensatory DC:** 4,4 mF (2 × 2200 µF, elektrolityczne), z rezystorem
-  rozładowczym załączanym przekaźnikiem.
-- **Tranzystory:** IRFP4568PbF (TO-247, 150 V, R_DS(on) = 4,8 mΩ),
-  montowane w podstawce na płytce mocy.
+- **Kondensatory DC:** 4,4 mF (2 × 2200 µF, elektrolityczne). Rozładowanie
+  przyciskiem SW1 przez rezystory R37–R41 (5 × 120 Ω), dioda D3 sygnalizuje
+  napięcie (potwierdzone przez autora 2026-11-16, zgodne ze schematem).
+- **Tranzystory:** IRFP260MPbF (TO-247AC, 200 V, 50 A, R_DS(on) ≤ 40 mΩ,
+  Q_g ≤ 234 nC), montowane w podstawce z zaciskami na płytce mocy
+  (potwierdzone przez autora 2026-11-16; wcześniej zakładano IRFP4568PbF).
 - **Sterowniki bramkowe:** UCC27511A (4 A / 8 A).
   - Napięcia bramki: V_GS(on) = +12 V, V_GS(off) = −5 V (razem 17 V, przy
     dopuszczalnym zakresie 4,5–18 V).
   - IN+ to sygnał PWM, IN− na GND (może służyć jako sprzętowe wyłączenie).
-  - Q_g ≈ 190 nC, co przy 100 kHz daje średnio ok. 19 mA na kanał.
+  - Q_g ≤ 234 nC (IRFP260MPbF), co przy 100 kHz daje średnio ok. 23 mA na kanał.
 - **Izolowane zasilanie każdego kanału:**
   - SN6507 (sterownik push-pull), wejście 12 V, UVLO ustawione dzielnikiem.
   - Transformator Würth 750319692 (przekładnia 1,4:1) z uzwojeniem z odczepem
@@ -151,7 +153,8 @@ z autorem, czy nadal są aktualne.
   - Dzielniki: R1P = 90,9 kΩ, R2P = 10 kΩ; R1N = 42,2 kΩ, R2N = 10 kΩ.
 - **Zabezpieczenie nadprądowe:**
   - Próg 10 A, pomiar 100 mV/A na boczniku: wzmacniacz różnicowy OPA192
-    i komparator okienkowy TLV183x (±1 V).
+    i dwa komparatory TLV1842 (okno ±1 V), zatrzask na bramkach NAND
+    SN74LVC2G00 (potwierdzone przez autora 2026-11-16).
   - Sygnały OV/OC przechodzą na stronę mikrokontrolera przez izolator ISO7720.
 - **PCB:** KiCad, 4 warstwy, produkcja JLCPCB. Symulacje w ngspice.
 - **Do zrobienia:** snubbery RC, filtr wyjściowy LC, pomiar napięcia DC,
