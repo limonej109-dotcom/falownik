@@ -148,9 +148,9 @@ z autorem, czy nadal są aktualne.
   - SN6507 (sterownik push-pull), wejście 12 V, UVLO ustawione dzielnikiem.
   - Transformator Würth 750319692 (przekładnia 1,4:1) z uzwojeniem z odczepem
     środkowym i prostownikiem, co daje ok. ±15 V.
-  - Podwójny LDO TPS7A39 (jeden na kanał), wyjścia +12 V / −5 V względem
-    źródła tranzystora.
-  - Dzielniki: R1P = 90,9 kΩ, R2P = 10 kΩ; R1N = 42,2 kΩ, R2N = 10 kΩ.
+  - Własny stabilizator LDO autora (jeden na kanał; NIE TPS7A39 – potwierdzone
+    przez autora 2026-11-16), wyjścia +12 V / −5 V względem źródła tranzystora.
+    Szczegóły topologii do uzupełnienia.
 - **Zabezpieczenie nadprądowe:**
   - Próg 10 A, pomiar 100 mV/A na boczniku: wzmacniacz różnicowy OPA192
     i dwa komparatory TLV1842 (okno ±1 V), zatrzask na bramkach NAND
