@@ -19,8 +19,8 @@ i~\ref{chap: Badania eksperymentalne}.
 Falownikiem (inwerterem) nazywa się przekształtnik energoelektroniczny,
 który przetwarza energię prądu stałego na energię prądu przemiennego
 o~regulowanej amplitudzie i~częstotliwości napięcia
-wyjściowego~\cite{barlik1998,mohan2003}. Ze względu na charakter źródła
-zasilającego obwód pośredniczący wyróżnia się dwie podstawowe grupy
+wyjściowego~\cite{barlik1998,mohan2003}. Ze względu na charakter źródła 
+zasilającego obwód prądu stałego wyróżnia się dwie podstawowe grupy
 falowników:
 \begin{itemize}
   \item falowniki napięcia (ang.~\textit{Voltage Source Inverter}, VSI),
@@ -30,19 +30,26 @@ falowników:
         zasilane ze źródła o~charakterze prądowym, w~których po stronie
         prądu stałego stosuje się dławik o~dużej indukcyjności.
 \end{itemize}
-W~zakresie małych i~średnich mocy dominują falowniki napięcia, dlatego
-dalsze rozważania dotyczą wyłącznie tej grupy
-przekształtników~\cite{rashid2014,bose2002}.
+W~dalszej części pracy rozpatrywane są wyłącznie falowniki napięcia, ze względu na to, że
+są to rozwiązanie dominujące w~praktyce, szczególnie w~zakresie małych i~średnich
+mocy~\cite{rashid2014,bose2002}. Najważniejsze elementy które wchodzą w skład falownika napięcia to:
 
-W~falowniku napięcia kondensator obwodu pośredniczącego $C_\mathrm{DC}$
-utrzymuje w~przybliżeniu stałą wartość napięcia $U_\mathrm{DC}$ w~czasie
-pojedynczego okresu łączeń. Zapewnia on drogę o~małej impedancji dla
-impulsowego prądu pobieranego przez łączniki oraz przejmuje energię
-zwracaną z~obciążenia. Łączniki falownika są elementami w~pełni sterowalnymi
+Kondensatory obwodu prądu stałego $C_\mathrm{DC}$ (ang. DC-link)
+utrzymują w~przybliżeniu stałą wartość napięcia $U_\mathrm{DC}$ w~czasie
+pojedynczego okresu przełączania łączników. Pełnią one funkcję lokalnego
+magazynu energii zapewniając drogę o~małej impedancji dla prądu impulsowego 
+pobieranego przez łączniki oraz przejmują energię zwracaną z~obciążenia.
+Umieszczenie kondensatorów w~bezpośrednim sąsiedztwie łączników pozwala
+zamknąć składowe prądu o~wysokiej częstotliwości w~obwodzie o~małej
+powierzchni, co ogranicza wpływ indukcyjności pasożytniczych i~związane
+z~nimi przepięcia podczas przełączeń. Dzięki stabilnemu napięciu
+$U_\mathrm{DC}$ napięcie wyjściowe falownika jest odwzorowywane zgodnie
+z~zadanym wzorcem modulacji, a~jego zniekształcenia wynikające z~tętnień
+napięcia obwodu pośredniczącego pozostają niewielkie.\\ Łączniki falownika są elementami w~pełni sterowalnymi
 (tranzystory MOSFET lub IGBT), które przewodzą prąd w~jednym kierunku
-i~blokują napięcie jednej polaryzacji. Ponieważ prąd obciążenia o~charakterze
-indukcyjnym może płynąć w~kierunku przeciwnym do kierunku przewodzenia
-tranzystora, każdy łącznik bocznikuje się antyrównolegle dołączoną diodą
+i~blokują napięcie jednej polaryzacji. Ponieważ prąd obciążenia o~charakterze 
+indukcyjnym  podczas przerwy przewodzenia łącznika może płynąć w~kierunku przeciwnym do kierunku przewodzenia
+tranzystora, każdy łącznik bocznikuje się równoległą przeciwnie do przewodzenia łącznika dołączoną diodą
 zwrotną. W~przypadku tranzystorów MOSFET funkcję tę może pełnić wewnętrzna
 dioda podłożowa (ang.~\textit{body diode}). Otrzymuje się w~ten sposób
 łącznik dwukierunkowy prądowo i~jednokierunkowy
@@ -50,38 +57,47 @@ napięciowo~\cite{mohan2003}.
 
 \subsubsection*{Gałąź łącznikowa}
 
-Gałąź łącznikowa (półmostek) składa się z~dwóch szeregowo połączonych
-łączników dołączonych do biegunów P~i~N obwodu pośredniczącego
-(rys.~\ref{fig:mostek-h}). Łączniki są sterowane komplementarnie, więc
-w~stanie ustalonym przewodzi zawsze dokładnie jeden z~nich. Stan gałęzi opisuje
-funkcja przełączająca $s_\mathrm{a} \in \{0, 1\}$, równa~$1$ przy załączonym
-łączniku górnym i~$0$ przy dolnym. Napięcie węzła wyjściowego względem bieguna
-ujemnego N wynosi:
+Gałąź łącznikowa
+(nazywana również półmostkiem), złożona jest z~dwóch
+szeregowo połączonych łączników dołączonych do biegunów obwodu
+prądu stałego (rys.~\ref{fig:mostek-h}). Łączniki tej samej gałęzi
+sterowane są komplementarnie, tzn.~w~stanie ustalonym zawsze przewodzi
+dokładnie jeden z~nich. Stan gałęzi można opisać funkcją przełączającą
+$s_\mathrm{a} \in \{0, 1\}$, przyjmującą wartość $1$, gdy załączony jest
+łącznik górny, oraz $0$, gdy załączony jest łącznik dolny. Napięcie węzła
+wyjściowego gałęzi względem bieguna ujemnego  wynosi wówczas:
 \begin{equation}
   u_\mathrm{aN}(t) = s_\mathrm{a}(t)\, U_\mathrm{DC},
   \label{eq:uaN}
 \end{equation}
 gdzie:
 \begin{conditions}
-  U_\mathrm{DC} & napięcie obwodu pośredniczącego.
+  U_\mathrm{DC}   & napięcie obwodu pośredniczącego, \\
+  s_\mathrm{a}(t) & funkcja przełączająca gałęzi~a.
 \end{conditions}
 
-Napięcie to nie zależy od kierunku prądu obciążenia. Nawet gdy prąd przejmuje
-dioda zwrotna, potencjał węzła wyznacza stan wysterowania łączników. Tym
-falownik napięcia różni się od przekształtników z~elementami niesterowanymi.
+Istotne jest to, że napięcie wyjściowe gałęzi nie zależy od kierunku prądu
+obciążenia  jeśli łącznik górny jest wysterowany, a~prąd płynie w~kierunku
+do obwodu prądu stałego, przewodzi dioda zwrotna łącznika górnego,
+a~potencjał węzła a~jest nadal równy potencjałowi bieguna~dodatniego. Właściwość ta
+odróżnia falownik napięcia od przekształtników, w~których napięcie wyjściowe
+zależy od stanu przewodzenia elementów niesterowanych.
 
-Przy przełączaniu z~częstotliwością $f_\mathrm{s} = 1/T_\mathrm{s}$
-i~współczynniku wypełnienia $D_\mathrm{a}$ (względnym czasie załączenia
-łącznika górnego) średnie napięcie gałęzi w~okresie łączeń wynosi:
+Jeżeli łączniki gałęzi przełączane są okresowo z~częstotliwością
+$f_\mathrm{s} = 1/T_\mathrm{s}$, a~współczynnik wypełnienia $D_\mathrm{a}$
+określa względny czas załączenia łącznika górnego, to wartość średnia
+napięcia gałęzi w~okresie łączeń wynosi:
 \begin{equation}
   \bar{u}_\mathrm{aN} = \frac{1}{T_\mathrm{s}} \int_{0}^{T_\mathrm{s}}
   u_\mathrm{aN}(t)\, \mathrm{d}t = D_\mathrm{a}\, U_\mathrm{DC},
   \qquad D_\mathrm{a} \in [0, 1].
   \label{eq:uaN-sr}
 \end{equation}
-Gdy $D_\mathrm{a}$ zmienia się wolno w~porównaniu z~okresem łączeń
-($f_1 \ll f_\mathrm{s}$), gałąź działa dla składowych wolnozmiennych jak
-sterowane źródło napięcia. Na tym opierają się metody PWM opisane
+Jeśli współczynnik wypełnienia zmienia się wolno w~porównaniu z~okresem
+łączeń (tzn.~częstotliwość podstawowa $f_1$ napięcia wyjściowego spełnia
+warunek $f_1 \ll f_\mathrm{s}$), gałąź łącznikowa zachowuje się dla
+składowych wolnozmiennych jak sterowane źródło napięcia. Na tej obserwacji
+opierają się wszystkie metody modulacji szerokości impulsów opisane
 w~podrozdziale~\ref{sec: Metody modulacji PWM}.
 
 \subsubsection*{Kierunek przepływu energii}
