@@ -50,47 +50,38 @@ napięciowo~\cite{mohan2003}.
 
 \subsubsection*{Gałąź łącznikowa}
 
-Podstawowym blokiem funkcjonalnym falownika napięcia jest gałąź łącznikowa
-(nazywana również półmostkiem lub komórką łącznikową), złożona z~dwóch
-szeregowo połączonych łączników dołączonych do biegunów P~i~N obwodu
-pośredniczącego (rys.~\ref{fig:mostek-h}). Łączniki tej samej gałęzi
-sterowane są komplementarnie, tzn.~w~stanie ustalonym zawsze przewodzi
-dokładnie jeden z~nich. Stan gałęzi można opisać funkcją przełączającą
-$s_\mathrm{a} \in \{0, 1\}$, przyjmującą wartość $1$, gdy załączony jest
-łącznik górny, oraz $0$, gdy załączony jest łącznik dolny. Napięcie węzła
-wyjściowego gałęzi względem bieguna ujemnego N wynosi wówczas:
+Gałąź łącznikowa (półmostek) składa się z~dwóch szeregowo połączonych
+łączników dołączonych do biegunów P~i~N obwodu pośredniczącego
+(rys.~\ref{fig:mostek-h}). Łączniki są sterowane komplementarnie, więc
+w~stanie ustalonym przewodzi zawsze dokładnie jeden z~nich. Stan gałęzi opisuje
+funkcja przełączająca $s_\mathrm{a} \in \{0, 1\}$, równa~$1$ przy załączonym
+łączniku górnym i~$0$ przy dolnym. Napięcie węzła wyjściowego względem bieguna
+ujemnego N wynosi:
 \begin{equation}
   u_\mathrm{aN}(t) = s_\mathrm{a}(t)\, U_\mathrm{DC},
   \label{eq:uaN}
 \end{equation}
 gdzie:
 \begin{conditions}
-  U_\mathrm{DC}   & napięcie obwodu pośredniczącego, \\
-  s_\mathrm{a}(t) & funkcja przełączająca gałęzi~a.
+  U_\mathrm{DC} & napięcie obwodu pośredniczącego.
 \end{conditions}
 
-Istotne jest, że napięcie wyjściowe gałęzi nie zależy od kierunku prądu
-obciążenia -- jeśli łącznik górny jest wysterowany, a~prąd płynie w~kierunku
-do obwodu pośredniczącego, przewodzi dioda zwrotna łącznika górnego,
-a~potencjał węzła a~jest nadal równy potencjałowi bieguna~P. Właściwość ta
-odróżnia falownik napięcia od przekształtników, w~których napięcie wyjściowe
-zależy od stanu przewodzenia elementów niesterowanych.
+Napięcie to nie zależy od kierunku prądu obciążenia. Nawet gdy prąd przejmuje
+dioda zwrotna, potencjał węzła wyznacza stan wysterowania łączników. Tym
+falownik napięcia różni się od przekształtników z~elementami niesterowanymi.
 
-Jeżeli łączniki gałęzi przełączane są okresowo z~częstotliwością
-$f_\mathrm{s} = 1/T_\mathrm{s}$, a~współczynnik wypełnienia $D_\mathrm{a}$
-określa względny czas załączenia łącznika górnego, to wartość średnia
-napięcia gałęzi w~okresie łączeń wynosi:
+Przy przełączaniu z~częstotliwością $f_\mathrm{s} = 1/T_\mathrm{s}$
+i~współczynniku wypełnienia $D_\mathrm{a}$ (względnym czasie załączenia
+łącznika górnego) średnie napięcie gałęzi w~okresie łączeń wynosi:
 \begin{equation}
   \bar{u}_\mathrm{aN} = \frac{1}{T_\mathrm{s}} \int_{0}^{T_\mathrm{s}}
   u_\mathrm{aN}(t)\, \mathrm{d}t = D_\mathrm{a}\, U_\mathrm{DC},
   \qquad D_\mathrm{a} \in [0, 1].
   \label{eq:uaN-sr}
 \end{equation}
-Jeśli współczynnik wypełnienia zmienia się wolno w~porównaniu z~okresem
-łączeń (tzn.~częstotliwość podstawowa $f_1$ napięcia wyjściowego spełnia
-warunek $f_1 \ll f_\mathrm{s}$), gałąź łącznikowa zachowuje się dla
-składowych wolnozmiennych jak sterowane źródło napięcia. Na tej obserwacji
-opierają się wszystkie metody modulacji szerokości impulsów opisane
+Gdy $D_\mathrm{a}$ zmienia się wolno w~porównaniu z~okresem łączeń
+($f_1 \ll f_\mathrm{s}$), gałąź działa dla składowych wolnozmiennych jak
+sterowane źródło napięcia. Na tym opierają się metody PWM opisane
 w~podrozdziale~\ref{sec: Metody modulacji PWM}.
 
 \subsubsection*{Kierunek przepływu energii}
