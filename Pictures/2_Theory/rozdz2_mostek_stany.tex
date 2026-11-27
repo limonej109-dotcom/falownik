@@ -1,0 +1,164 @@
+% Stany pracy falownika mostkowego (mostek H) - drogi przeplywu pradu obciazenia.
+% Wstawiany wewnatrz srodowiska figure; podpis i etykieta w pliku rozdzialu.
+% \mostekstan{n}:
+%   1 - Q1 i Q4, io>0, uo=+UDC     2 - Q2 i Q3, io<0, uo=-UDC
+%   3 - D2 i D3, io>0, uo=-UDC     4 - D1 i D4, io<0, uo=+UDC
+%   5 - Q1 i D3, io>0, uo=0        6 - Q2 i D4, io<0, uo=0
+\definecolor{stanakt}{RGB}{196,30,58}   % element/przewod przewodzacy
+\definecolor{stannie}{gray}{0.62}       % elementy nieaktywne
+\providecommand{\mostekstan}[1]{%
+  % kolory: Q - tranzystory, D - diody, C - kondensator DC,
+  % T/B - szyna gorna/dolna (L: C-galaz a, A: wewnatrz galezi a,
+  % M: miedzy galeziami, B: wewnatrz galezi b),
+  % Laa/Lab - galaz a nad/pod wezlem, Lba/Lbb - galaz b, Na/Nb - wezel-dioda
+  \def\cQa{stannie}\def\cQb{stannie}\def\cQc{stannie}\def\cQd{stannie}%
+  \def\cDa{stannie}\def\cDb{stannie}\def\cDc{stannie}\def\cDd{stannie}%
+  \def\cC{stannie}%
+  \def\cTL{stannie}\def\cTA{stannie}\def\cTM{stannie}\def\cTB{stannie}%
+  \def\cBL{stannie}\def\cBA{stannie}\def\cBM{stannie}\def\cBB{stannie}%
+  \def\cLaa{stannie}\def\cLab{stannie}\def\cLba{stannie}\def\cLbb{stannie}%
+  \def\cNa{stannie}\def\cNb{stannie}%
+  \def\A{stanakt}%
+  \ifcase#1\or
+    % 1: Q1, Q4
+    \let\cC\A\let\cTL\A\let\cQa\A\let\cLaa\A\let\cNa\A
+    \let\cLbb\A\let\cQd\A\let\cBM\A\let\cBA\A\let\cBL\A
+    \def\uo{+U_\mathrm{DC}}%
+  \or
+    % 2: Q2, Q3
+    \let\cC\A\let\cTL\A\let\cTA\A\let\cTM\A\let\cQc\A\let\cLba\A
+    \let\cNa\A\let\cLab\A\let\cQb\A\let\cBL\A
+    \def\uo{-U_\mathrm{DC}}%
+  \or
+    % 3: D2, D3
+    \let\cC\A\let\cBL\A\let\cBA\A\let\cDb\A\let\cNb\A\let\cDc\A
+    \let\cTB\A\let\cTM\A\let\cTA\A\let\cTL\A
+    \def\uo{-U_\mathrm{DC}}%
+  \or
+    % 4: D1, D4
+    \let\cC\A\let\cBL\A\let\cBA\A\let\cBM\A\let\cBB\A\let\cDd\A
+    \let\cNb\A\let\cDa\A\let\cTA\A\let\cTL\A
+    \def\uo{+U_\mathrm{DC}}%
+  \or
+    % 5: Q1, D3 (stan zerowy, lacznik gorny)
+    \let\cQa\A\let\cLaa\A\let\cNa\A\let\cNb\A\let\cDc\A
+    \let\cTB\A\let\cTM\A\let\cTA\A
+    \def\uo{0}%
+  \or
+    % 6: Q2, D4 (stan zerowy, lacznik dolny)
+    \let\cQb\A\let\cLab\A\let\cNa\A\let\cBA\A\let\cBM\A\let\cBB\A
+    \let\cDd\A\let\cNb\A
+    \def\uo{0}%
+  \fi
+  \begin{circuitikz}[european, scale=0.68, transform shape, font=\normalsize,
+      prad/.style={stanakt, line width=1.4pt, -{Latex[length=3.2mm, width=2.6mm]}},
+      w/.style={line width=1.2pt}]
+    \useasboundingbox (-1.25,-0.75) rectangle (9.45,6.45);
+    % zrodlo i kondensator obwodu DC
+    \draw[stannie] (0,0) to[V, l=$U_\mathrm{DC}$, invert] (0,6);
+    \draw[stannie] (0,6) -- (1.4,6);
+    \draw[stannie] (0,0) -- (1.4,0);
+    \draw[\cC, w] (1.4,6) to[C, l=$C_\mathrm{DC}$, color=\cC] (1.4,0);
+    \node[above] at (0.7,6) {P};
+    \node[below] at (0.7,0) {N};
+    % szyny
+    \draw[\cTL, w] (1.4,6) -- (3.6,6);  \draw[\cBL, w] (1.4,0) -- (3.6,0);
+    \draw[\cTA, w] (3.6,6) -- (4.5,6);  \draw[\cBA, w] (3.6,0) -- (4.5,0);
+    \draw[\cTM, w] (4.5,6) -- (7.6,6);  \draw[\cBM, w] (4.5,0) -- (7.6,0);
+    \draw[\cTB, w] (7.6,6) -- (8.5,6);  \draw[\cBB, w] (7.6,0) -- (8.5,0);
+    % galaz a
+    \node[nmos, anchor=D, color=\cQa] (Q1) at (3.6,6) {};
+    \node[nmos, anchor=S, color=\cQb] (Q2) at (3.6,0) {};
+    \node[left, text=\cQa] at (Q1.G) {$Q_1$};
+    \node[left, text=\cQb] at (Q2.G) {$Q_2$};
+    \draw[\cLaa, w] (Q1.S) -- (3.6,3);
+    \draw[\cLab, w] (3.6,3) -- (Q2.D);
+    \draw[\cNa, w] (3.6,3) -- (4.5,3);
+    \draw[\cDa, w] (4.5,3) to[D*, l_=$D_1$, color=\cDa] (4.5,6);
+    \draw[\cDb, w] (4.5,0) to[D*, l_=$D_2$, color=\cDb] (4.5,3);
+    % galaz b
+    \node[nmos, anchor=D, color=\cQc] (Q3) at (7.6,6) {};
+    \node[nmos, anchor=S, color=\cQd] (Q4) at (7.6,0) {};
+    \node[left, text=\cQc] at (Q3.G) {$Q_3$};
+    \node[left, text=\cQd] at (Q4.G) {$Q_4$};
+    \draw[\cLba, w] (Q3.S) -- (7.6,3);
+    \draw[\cLbb, w] (7.6,3) -- (Q4.D);
+    \draw[\cNb, w] (7.6,3) -- (8.5,3);
+    \draw[\cDc, w] (8.5,3) to[D*, l_=$D_3$, color=\cDc] (8.5,6);
+    \draw[\cDd, w] (8.5,0) to[D*, l_=$D_4$, color=\cDd] (8.5,3);
+    % obciazenie
+    \draw[stanakt, w] (4.5,3) to[generic, l=$Z_\mathrm{o}$, color=stanakt] (7.6,3);
+    % wezly
+    \foreach \p in {(1.4,6),(1.4,0),(3.6,3),(4.5,3),(4.5,6),(4.5,0),
+                    (7.6,3),(8.5,3),(7.6,6),(7.6,0)}
+      \fill \p circle (1.6pt);
+    \node[below left] at (3.6,3) {a};
+    \node[below right] at (7.6,3) {b};
+    % napiecie wyjsciowe (strzalka do zacisku a)
+    \draw[-{Latex[length=2mm]}, black!70] (7.3,2.35) -- (5.0,2.35);
+    \node[below, font=\small] at (6.1,2.35) {$u_\mathrm{o} = \uo$};
+    % kierunek pradu
+    \ifcase#1\or
+      \draw[prad] (1.4,4.4) -- ++(0,0.6);   \draw[prad] (2.4,6) -- ++(0.5,0);
+      \draw[prad] (3.6,3.95) -- ++(0,-0.6); \draw[prad] (7.6,2.45) -- ++(0,-0.6);
+      \draw[prad] (6.6,0) -- ++(-0.6,0);    \draw[prad] (4.75,3) -- ++(0.45,0);
+      \node[above, text=stanakt] at (4.95,3.02) {$i_\mathrm{o}$};
+    \or
+      \draw[prad] (1.4,4.4) -- ++(0,0.6);   \draw[prad] (5.7,6) -- ++(0.6,0);
+      \draw[prad] (7.6,3.95) -- ++(0,-0.6); \draw[prad] (3.6,2.45) -- ++(0,-0.6);
+      \draw[prad] (3.1,0) -- ++(-0.5,0);    \draw[prad] (7.35,3) -- ++(-0.45,0);
+      \node[above, text=stanakt] at (7.15,3.02) {$i_\mathrm{o}$};
+    \or
+      \draw[prad] (1.4,5.0) -- ++(0,-0.6);  \draw[prad] (2.6,0) -- ++(0.5,0);
+      \draw[prad] (4.5,2.1) -- ++(0,0.6);   \draw[prad] (8.5,3.35) -- ++(0,0.6);
+      \draw[prad] (6.6,6) -- ++(-0.6,0);    \draw[prad] (4.75,3) -- ++(0.45,0);
+      \node[above, text=stanakt] at (4.95,3.02) {$i_\mathrm{o}$};
+    \or
+      \draw[prad] (1.4,5.0) -- ++(0,-0.6);  \draw[prad] (5.7,0) -- ++(0.6,0);
+      \draw[prad] (8.5,2.1) -- ++(0,0.6);   \draw[prad] (4.5,3.35) -- ++(0,0.6);
+      \draw[prad] (3.0,6) -- ++(-0.5,0);    \draw[prad] (7.35,3) -- ++(-0.45,0);
+      \node[above, text=stanakt] at (7.15,3.02) {$i_\mathrm{o}$};
+    \or
+      \draw[prad] (3.6,3.95) -- ++(0,-0.6); \draw[prad] (8.5,3.35) -- ++(0,0.6);
+      \draw[prad] (6.6,6) -- ++(-0.6,0);    \draw[prad] (4.75,3) -- ++(0.45,0);
+      \node[above, text=stanakt] at (4.95,3.02) {$i_\mathrm{o}$};
+    \or
+      \draw[prad] (3.6,2.45) -- ++(0,-0.6); \draw[prad] (8.5,2.1) -- ++(0,0.6);
+      \draw[prad] (5.7,0) -- ++(0.6,0);     \draw[prad] (7.35,3) -- ++(-0.45,0);
+      \node[above, text=stanakt] at (7.15,3.02) {$i_\mathrm{o}$};
+    \fi
+  \end{circuitikz}}%
+\begin{subfigure}[b]{0.48\textwidth}
+  \centering
+  \mostekstan{1}
+  \caption{$i_\mathrm{o} > 0$, przewodzą $Q_1$ i~$Q_4$}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.48\textwidth}
+  \centering
+  \mostekstan{2}
+  \caption{$i_\mathrm{o} < 0$, przewodzą $Q_2$ i~$Q_3$}
+\end{subfigure}
+
+\vspace{4mm}
+\begin{subfigure}[b]{0.48\textwidth}
+  \centering
+  \mostekstan{3}
+  \caption{$i_\mathrm{o} > 0$, przewodzą diody $D_2$ i~$D_3$}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.48\textwidth}
+  \centering
+  \mostekstan{4}
+  \caption{$i_\mathrm{o} < 0$, przewodzą diody $D_1$ i~$D_4$}
+\end{subfigure}
+
+\vspace{4mm}
+\begin{subfigure}[b]{0.48\textwidth}
+  \centering
+  \mostekstan{5}
+  \caption{$i_\mathrm{o} > 0$, stan zerowy: $Q_1$ i~$D_3$}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.48\textwidth}
+  \centering
+  \mostekstan{6}
+  \caption{$i_\mathrm{o} < 0$, stan zerowy: $Q_2$ i~$D_4$}
+\end{subfigure}

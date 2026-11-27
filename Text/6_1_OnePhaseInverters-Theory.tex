@@ -102,7 +102,8 @@ wszystkich czterech ćwiartkach płaszczyzny $(u_\mathrm{o}, i_\mathrm{o})$.
 W~przedziałach czasu, w~których znaki napięcia $u_\mathrm{o}$ i~prądu
 $i_\mathrm{o}$ są przeciwne, moc chwilowa jest ujemna i~energia zgromadzona
 w~indukcyjności obciążenia zwracana jest przez diody zwrotne
-(rys.~\ref{fig:polmostek-stany}b i~\ref{fig:polmostek-stany}d) do obwodu
+(rys.~\ref{fig:polmostek-stany}b i~\ref{fig:polmostek-stany}d oraz
+rys.~\ref{fig:mostek-stany}c i~\ref{fig:mostek-stany}d) do obwodu
 prądu stałego. Jeżeli źródło zasilające nie przyjmuje energii, zwrócona energia doładowuje kondensator
 $C_\mathrm{DC}$, co powoduje wzrost napięcia obwodu prądu stałego. Zjawisko
 to należy uwzględnić przy doborze pojemności i~napięcia znamionowego
@@ -183,10 +184,14 @@ Drogi przepływu prądu obciążenia w~poszczególnych stanach pracy półmostka
 pokazano na rys.~\ref{fig:polmostek-stany}. Przy dodatnim prądzie
 obciążenia prąd płynie przez załączony tranzystor $Q_1$, a~po jego
 wyłączeniu indukcyjność obciążenia podtrzymuje prąd, który zamyka się przez
-diodę zwrotną $D_2$ (rys.~ef{fig:polmostek-stany}a
-i~ef{fig:polmostek-stany}b). Przy ujemnym prądzie role się odwracają:
+diodę zwrotną $D_2$ (rys.~
+ef{fig:polmostek-stany}a
+i~
+ef{fig:polmostek-stany}b). Przy ujemnym prądzie role się odwracają:
 prąd płynie przez tranzystor $Q_2$, a~po jego wyłączeniu przez diodę $D_1$
-(rys.~ef{fig:polmostek-stany}c i~ef{fig:polmostek-stany}d). Napięcie
+(rys.~
+ef{fig:polmostek-stany}c i~
+ef{fig:polmostek-stany}d). Napięcie
 wyjściowe zależy więc od tego, który element gałęzi przewodzi, a~nie tylko
 od tego, który tranzystor jest załączony. W~czasie przewodzenia diody
 zwrotnej energia zgromadzona w~indukcyjności obciążenia jest częściowo
@@ -246,6 +251,28 @@ krąży wówczas w~obwodzie zamkniętym przez jeden tranzystor i~jedną diodę
 (lub dwa tranzystory), bez udziału obwodu pośredniczącego. Możliwość
 wytworzenia stanu zerowego jest wykorzystywana w~modulacji unipolarnej
 opisanej w~podrozdziale~\ref{sec: Metody modulacji PWM}~\cite[s.~5]{instrukcja}.
+
+Drogi przepływu prądu obciążenia w~stanach pracy mostka pokazano na
+rys.~\ref{fig:mostek-stany}. W~stanach aktywnych przewodzą łączniki leżące
+na przekątnej mostka: tranzystory $Q_1$ i~$Q_4$ albo $Q_2$ i~$Q_3$
+(rys.~\ref{fig:mostek-stany}a i~\ref{fig:mostek-stany}b), a~energia płynie
+z~obwodu prądu stałego do obciążenia. Po wyłączeniu tranzystorów
+indukcyjność obciążenia podtrzymuje prąd, który zamyka się przez diody
+zwrotne leżące na drugiej przekątnej (rys.~\ref{fig:mostek-stany}c
+i~\ref{fig:mostek-stany}d). Napięcie wyjściowe zmienia wtedy znak, a~energia
+zgromadzona w~obciążeniu wraca do kondensatora $C_\mathrm{DC}$. W~stanach
+zerowych (rys.~\ref{fig:mostek-stany}e i~\ref{fig:mostek-stany}f) prąd krąży
+przez jeden tranzystor i~jedną diodę, a~obwód prądu stałego nie bierze
+udziału w~przepływie energii~\cite[s.~5]{instrukcja}.
+
+\begin{figure}[p]
+  \centering
+  \input{Pictures/2_Theory/rozdz2_mostek_stany}
+  \caption{Stany pracy falownika mostkowego -- drogi przepływu prądu
+    obciążenia (zaznaczone na czerwono)}
+  \label{fig:mostek-stany}
+  \zrodlo{opracowanie własne na podstawie~\cite[s.~5]{instrukcja}}
+\end{figure}
 
 \begin{table}[htbp]
   \centering
@@ -426,7 +453,8 @@ przekątnej mostka: gdy $u_\mathrm{ref} > u_\mathrm{tri}$, załączone są
 łączniki $Q_1$ i~$Q_4$, a~w~przeciwnym przypadku -- łączniki $Q_2$ i~$Q_3$.
 Gałąź~b pracuje więc komplementarnie do gałęzi~a ($s_\mathrm{b} = 1 -
 s_\mathrm{a}$), a~napięcie wyjściowe przyjmuje wyłącznie wartości
-$+U_\mathrm{DC}$ oraz $-U_\mathrm{DC}$ (rys.~\ref{fig:pwm-bipolarna})~\cite[s.~20]{instrukcja}.
+$+U_\mathrm{DC}$ oraz $-U_\mathrm{DC}$ (rys.~\ref{fig:pwm-bipolarna}
+oraz rys.~\ref{fig:mostek-stany}a--d)~\cite[s.~20]{instrukcja}.
 W~zakresie liniowym, tj.~dla $m_\mathrm{a} \leq 1$, amplituda składowej
 podstawowej napięcia wyjściowego wynosi~\cite[s.~11--12]{instrukcja},
 \cite[podrozdz.~8-3-2-1]{mohan2003}:
@@ -477,7 +505,8 @@ jest niezależnie. Gałąź~a przełączana jest na podstawie porównania sygna�
 nośnego z~sygnałem $u_\mathrm{ref}$, a~gałąź~b -- na podstawie porównania
 tego samego sygnału nośnego z~sygnałem odwróconym $-u_\mathrm{ref}$
 (rys.~\ref{fig:pwm-unipolarna}). Wykorzystywane są przy tym również stany
-zerowe mostka (tab.~\ref{tab:stany-mostka}). W~dodatnim półokresie składowej
+zerowe mostka (tab.~\ref{tab:stany-mostka},
+rys.~\ref{fig:mostek-stany}e i~\ref{fig:mostek-stany}f). W~dodatnim półokresie składowej
 podstawowej napięcie wyjściowe przełącza się między wartościami
 $+U_\mathrm{DC}$ i~$0$, a~w~ujemnym -- między $0$ i~$-U_\mathrm{DC}$~\cite[s.~11--12]{instrukcja}.
 Amplituda składowej podstawowej w~zakresie liniowym jest taka sama jak
