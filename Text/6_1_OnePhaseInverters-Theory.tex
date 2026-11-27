@@ -51,7 +51,8 @@ i~blokują napięcie jednej polaryzacji. Ponieważ prąd obciążenia o~charakte
 indukcyjnym  podczas przerwy przewodzenia łącznika może płynąć w~kierunku przeciwnym do kierunku przewodzenia
 tranzystora, każdy łącznik bocznikuje się równoległą przeciwnie do przewodzenia łącznika dołączoną diodą
 zwrotną. W~przypadku tranzystorów MOSFET funkcję tę może pełnić wewnętrzna
-dioda podłożowa (ang.~\textit{body diode}). Otrzymuje się w~ten sposób
+dioda podłożowa (ang.~\textit{body diode}), co pokazano na przykładzie
+półmostka na rys.~\ref{fig:polmostek-stany}. Otrzymuje się w~ten sposób
 łącznik dwukierunkowy prądowo i~jednokierunkowy
 napięciowo~\cite[s.~202--203]{mohan2003}, \cite[s.~190]{mohan2012},
 \cite[s.~4--5]{instrukcja}.
@@ -100,7 +101,8 @@ Falownik napięcia z~obciążeniem o~charakterze indukcyjnym pracuje we
 wszystkich czterech ćwiartkach płaszczyzny $(u_\mathrm{o}, i_\mathrm{o})$.
 W~przedziałach czasu, w~których znaki napięcia $u_\mathrm{o}$ i~prądu
 $i_\mathrm{o}$ są przeciwne, moc chwilowa jest ujemna i~energia zgromadzona
-w~indukcyjności obciążenia zwracana jest przez diody zwrotne do obwodu
+w~indukcyjności obciążenia zwracana jest przez diody zwrotne
+(rys.~\ref{fig:polmostek-stany}b i~\ref{fig:polmostek-stany}d) do obwodu
 prądu stałego. Jeżeli źródło zasilające nie przyjmuje energii, zwrócona energia doładowuje kondensator
 $C_\mathrm{DC}$, co powoduje wzrost napięcia obwodu prądu stałego. Zjawisko
 to należy uwzględnić przy doborze pojemności i~napięcia znamionowego
@@ -119,7 +121,8 @@ rezystancjami pasożytniczymi, co prowadzi do wzrostu strat lub uszkodzenia
 opóźnia się o~czas martwy $t_\mathrm{d}$ (ang.~\textit{dead time}),
 w~którym oba łączniki gałęzi są wyłączone~\cite[s.~3, 10]{instrukcja}.
 
-W~czasie martwym prąd obciążenia przejmuje jedna z~diod zwrotnych, więc
+W~czasie martwym prąd obciążenia przejmuje jedna z~diod zwrotnych
+(rys.~\ref{fig:polmostek-stany}b i~\ref{fig:polmostek-stany}d), więc
 węzeł wyjściowy przyjmuje potencjał wynikający z~kierunku prądu,
 a~impuls napięcia gałęzi jest o~$t_\mathrm{d}$ krótszy lub dłuższy od
 zadanego. Dla falownika mostkowego wartość średnia błędu napięcia wyjściowego
@@ -174,6 +177,28 @@ napięcie wyjściowe przyjmuje dwie wartości~\cite[s.~4]{instrukcja}:
   \label{fig:polmostek}
   \zrodlo{opracowanie własne na podstawie~\cite[s.~3--4]{instrukcja},
     \cite[podrozdz.~8-3-1]{mohan2003}}
+\end{figure}
+
+Drogi przepływu prądu obciążenia w~poszczególnych stanach pracy półmostka
+pokazano na rys.~\ref{fig:polmostek-stany}. Przy dodatnim prądzie
+obciążenia prąd płynie przez załączony tranzystor $Q_1$, a~po jego
+wyłączeniu indukcyjność obciążenia podtrzymuje prąd, który zamyka się przez
+diodę zwrotną $D_2$ (rys.~ef{fig:polmostek-stany}a
+i~ef{fig:polmostek-stany}b). Przy ujemnym prądzie role się odwracają:
+prąd płynie przez tranzystor $Q_2$, a~po jego wyłączeniu przez diodę $D_1$
+(rys.~ef{fig:polmostek-stany}c i~ef{fig:polmostek-stany}d). Napięcie
+wyjściowe zależy więc od tego, który element gałęzi przewodzi, a~nie tylko
+od tego, który tranzystor jest załączony. W~czasie przewodzenia diody
+zwrotnej energia zgromadzona w~indukcyjności obciążenia jest częściowo
+zwracana do kondensatorów dzielnika~\cite[s.~4]{instrukcja}.
+
+\begin{figure}[htbp]
+  \centering
+  \input{Pictures/2_Theory/rozdz2_polmostek_stany}
+  \caption{Stany pracy falownika półmostkowego -- drogi przepływu prądu
+    obciążenia (zaznaczone na czerwono)}
+  \label{fig:polmostek-stany}
+  \zrodlo{opracowanie własne na podstawie~\cite[s.~3--4]{instrukcja}}
 \end{figure}
 
 Przy sterowaniu przebiegiem prostokątnym (każdy łącznik przewodzi przez

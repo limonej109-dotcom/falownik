@@ -1,0 +1,51 @@
+% Stany pracy falownika polmostkowego - drogi przeplywu pradu obciazenia.
+% Wstawiany wewnatrz srodowiska figure; podpis i etykieta w pliku rozdzialu.
+% #1 - wspolrzedne zamknietej drogi pradu (podswietlenie na czerwono)
+\providecommand{\polmostekstan}[1]{%
+\begin{circuitikz}[european, scale=0.62, transform shape, font=\small]
+  % podswietlenie drogi pradu (rysowane pod schematem)
+  \draw[red!75, line width=3.2pt, line join=round, opacity=0.55] #1;
+  % schemat polmostka
+  \draw (0,0) to[V, l=$U_\mathrm{DC}$, invert] (0,6);
+  \draw (0,6) -- (7.5,6);
+  \draw (0,0) -- (7.5,0);
+  \node[nmos, anchor=D] (Q1) at (2.4,6) {};
+  \node[nmos, anchor=S] (Q2) at (2.4,0) {};
+  \draw (Q1.S) -- (Q2.D);
+  \node[left] at (Q1.G) {$Q_1$};
+  \node[left] at (Q2.G) {$Q_2$};
+  \draw (3.3,3) to[D*, l_=$D_1$, *-*] (3.3,6);
+  \draw (3.3,0) to[D*, l_=$D_2$, *-*] (3.3,3);
+  \draw (2.4,3) node[circ]{} -- (3.3,3);
+  \node[above left] at (2.4,3) {a};
+  \draw (7.5,6) to[C, l=$C_1$, *-] (7.5,3) to[C, l=$C_2$, -*] (7.5,0);
+  \draw (7.5,3) node[circ]{} node[right]{0};
+  \draw (3.3,3) to[short, i>^=$i_\mathrm{o}$] (4.4,3) to[generic, l=$Z_\mathrm{o}$] (5.8,3) -- (7.5,3);
+  \draw[-{Latex[length=2mm]}] (6.9,2.4) -- node[below]{$u_\mathrm{o}$} (3.9,2.4);
+\end{circuitikz}}%
+\begin{subfigure}[b]{0.48\textwidth}
+  \centering
+  \polmostekstan{(2.4,6) -- (2.4,3) -- (7.5,3) -- (7.5,6) -- cycle}
+  \caption{przewodzi $Q_1$: $i_\mathrm{o} > 0$,
+    $u_\mathrm{o} = +U_\mathrm{DC}/2$}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.48\textwidth}
+  \centering
+  \polmostekstan{(3.3,0) -- (3.3,3) -- (7.5,3) -- (7.5,0) -- cycle}
+  \caption{przewodzi $D_2$: $i_\mathrm{o} > 0$,
+    $u_\mathrm{o} = -U_\mathrm{DC}/2$}
+\end{subfigure}
+
+\vspace{4mm}
+\begin{subfigure}[b]{0.48\textwidth}
+  \centering
+  \polmostekstan{(2.4,3) -- (2.4,0) -- (7.5,0) -- (7.5,3) -- cycle}
+  \caption{przewodzi $Q_2$: $i_\mathrm{o} < 0$,
+    $u_\mathrm{o} = -U_\mathrm{DC}/2$}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.48\textwidth}
+  \centering
+  \polmostekstan{(3.3,3) -- (3.3,6) -- (7.5,6) -- (7.5,3) -- cycle}
+  \caption{przewodzi $D_1$: $i_\mathrm{o} < 0$,
+    $u_\mathrm{o} = +U_\mathrm{DC}/2$}
+\end{subfigure}
