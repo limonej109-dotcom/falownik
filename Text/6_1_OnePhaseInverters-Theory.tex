@@ -45,7 +45,7 @@ powierzchni, co ogranicza wpływ indukcyjności pasożytniczych i~związane
 z~nimi przepięcia podczas przełączeń~\cite[s.~203]{mohan2012}. Dzięki stabilnemu napięciu
 $U_\mathrm{DC}$ napięcie wyjściowe falownika jest odwzorowywane zgodnie
 z~zadanym wzorcem modulacji, a~jego zniekształcenia wynikające z~tętnień
-napięcia obwodu pośredniczącego pozostają niewielkie.\\ Łączniki falownika są elementami w~pełni sterowalnymi
+napięcia obwodu pośredniczącego pozostają niewielkie~\cite[s.~191, 202--203]{mohan2012}.\\ Łączniki falownika są elementami w~pełni sterowalnymi
 (tranzystory MOSFET lub IGBT), które przewodzą prąd w~jednym kierunku
 i~blokują napięcie jednej polaryzacji. Ponieważ prąd obciążenia o~charakterze 
 indukcyjnym  podczas przerwy przewodzenia łącznika może płynąć w~kierunku przeciwnym do kierunku przewodzenia
@@ -63,7 +63,7 @@ Gałąź łącznikowa (półmostek) składa się z~dwóch szeregowo połączonyc
 (rys.~\ref{fig:mostek-h}). Łączniki są sterowane komplementarnie, więc
 w~stanie ustalonym przewodzi zawsze dokładnie jeden z~nich. Stan gałęzi opisuje
 funkcja przełączająca $s_\mathrm{a} \in \{0, 1\}$, równa~$1$ przy załączonym
-łączniku górnym i~$0$ przy dolnym. Napięcie węzła wyjściowego względem bieguna
+łączniku górnym i~$0$ przy dolnym~\cite[s.~190--191]{mohan2012}. Napięcie węzła wyjściowego względem bieguna
 ujemnego wynosi:
 gdzie:
 \begin{equation}
@@ -79,10 +79,11 @@ gdzie:
 
 Napięcie to nie zależy od kierunku prądu obciążenia. Nawet gdy prąd przejmuje
 dioda zwrotna, potencjał węzła wyznacza stan wysterowania łączników. Tym
-falownik napięcia różni się od przekształtników z~elementami niesterowanymi.
+falownik napięcia różni się od przekształtników z~elementami
+niesterowanymi~\cite[s.~190]{mohan2012}.
 
 Przy przełączaniu z~częstotliwością $f_\mathrm{s} = 1/T_\mathrm{s}$
-i~współczynniku wypełnienia $D_\mathrm{a}$  średnie napięcie gałęzi w~okresie łączeń wynosi:
+i~współczynniku wypełnienia $D_\mathrm{a}$  średnie napięcie gałęzi w~okresie łączeń wynosi~\cite[s.~191]{mohan2012}:
 \begin{equation}
   \bar{u}_\mathrm{aN} = \frac{1}{T_\mathrm{s}} \int_{0}^{T_\mathrm{s}}
   u_\mathrm{aN}(t)\, \mathrm{d}t = D_\mathrm{a}\, U_\mathrm{DC},
@@ -141,9 +142,9 @@ wynosi około \SI{2}{\volt}. Ponieważ błąd zmienia znak wraz z~prądem
 obciążenia, ma on postać przebiegu prostokątnego w~fazie z~prądem, co
 zmniejsza amplitudę składowej podstawowej napięcia i~wprowadza harmoniczne
 niskich rzędów (3., 5., 7.) oraz zniekształcenia prądu w~otoczeniu jego
-przejść przez zero. Czas martwy powinien być zatem możliwie krótki, lecz
+przejść przez zero~\cite{murai1987}, \cite[podrozdz.~8-5]{mohan2003}. Czas martwy powinien być zatem możliwie krótki, lecz
 dłuższy od najdłuższego czasu wyłączania tranzystora z~uwzględnieniem
-opóźnień i~rozrzutów w~torze sterowania bramkowego.
+opóźnień i~rozrzutów w~torze sterowania bramkowego~\cite[s.~3, 8]{instrukcja}.
 
 % ---------------------------------------------------------------------
 \section{Topologie jednofazowych falowników}
@@ -161,7 +162,7 @@ Falownik półmostkowy (rys.~\ref{fig:polmostek}) składa się z~jednej gałęzi
 łącznikowej oraz pojemnościowego dzielnika napięcia $C_1$, $C_2$,
 tworzącego sztuczny punkt środkowy~0 obwodu pośredniczącego. Obciążenie
 dołączone jest między węzeł wyjściowy gałęzi a~punkt środkowy, dlatego
-napięcie wyjściowe przyjmuje dwie wartości:
+napięcie wyjściowe przyjmuje dwie wartości~\cite[s.~4]{instrukcja}:
 \begin{equation}
   u_\mathrm{o} = \left(s_\mathrm{a} - \tfrac{1}{2}\right) U_\mathrm{DC}
   \in \left\{ +\tfrac{U_\mathrm{DC}}{2},\; -\tfrac{U_\mathrm{DC}}{2} \right\}.
@@ -178,7 +179,8 @@ napięcie wyjściowe przyjmuje dwie wartości:
 \end{figure}
 
 Przy sterowaniu przebiegiem prostokątnym (każdy łącznik przewodzi przez
-połowę okresu) amplituda harmonicznej rzędu $n$ napięcia wyjściowego wynosi:
+połowę okresu) amplituda harmonicznej rzędu $n$ napięcia wyjściowego
+wynosi~\cite[s.~6--7]{instrukcja}:
 \begin{equation}
   \hat{U}_{\mathrm{o}(n)} = \frac{4}{n\pi} \cdot \frac{U_\mathrm{DC}}{2},
   \qquad n = 1, 3, 5, \ldots
@@ -197,7 +199,7 @@ Falownik mostkowy, nazywany również mostkiem~H lub falownikiem dwugałęziowym
 (rys.~\ref{fig:mostek-h}), składa się z~dwóch gałęzi łącznikowych:
 gałęzi~a (łączniki $Q_1$, $Q_2$) oraz gałęzi~b (łączniki $Q_3$, $Q_4$).
 Obciążenie dołączone jest między węzły wyjściowe obu gałęzi, a~napięcie
-wyjściowe jest różnicą napięć gałęzi:
+wyjściowe jest różnicą napięć gałęzi~\cite[s.~194]{mohan2012}:
 \begin{equation}
   u_\mathrm{o} = u_\mathrm{aN} - u_\mathrm{bN}
   = \left(s_\mathrm{a} - s_\mathrm{b}\right) U_\mathrm{DC}.
@@ -220,7 +222,7 @@ załączenie obu łączników górnych lub obu łączników dolnych. Prąd obci�
 krąży wówczas w~obwodzie zamkniętym przez jeden tranzystor i~jedną diodę
 (lub dwa tranzystory), bez udziału obwodu pośredniczącego. Możliwość
 wytworzenia stanu zerowego jest wykorzystywana w~modulacji unipolarnej
-opisanej w~podrozdziale~\ref{sec: Metody modulacji PWM}.
+opisanej w~podrozdziale~\ref{sec: Metody modulacji PWM}~\cite[s.~5]{instrukcja}.
 
 \begin{table}[htbp]
   \centering
@@ -261,7 +263,7 @@ potencjał zmienia się skokowo między potencjałami biegunów N~i~P z~szybkoś
 narastania rzędu kilku do kilkudziesięciu woltów na nanosekundę. Sterowanie
 tych tranzystorów wymaga zatem układów sterowania bramkowego o~pływającym
 potencjale odniesienia -- zasilanych metodą bootstrap albo z~izolowanych
-przetwornic DC/DC. Rozwiązanie z~izolowanym zasilaniem każdego kanału
+przetwornic DC/DC~\cite[s.~15]{instrukcja}. Rozwiązanie z~izolowanym zasilaniem każdego kanału
 umożliwia pracę z~dowolnym współczynnikiem wypełnienia (również stałym
 załączeniem łącznika) oraz stosowanie ujemnego napięcia wyłączającego
 bramkę, co zwiększa odporność na pasożytnicze załączenie tranzystora.
@@ -401,7 +403,7 @@ przekątnej mostka: gdy $u_\mathrm{ref} > u_\mathrm{tri}$, załączone są
 łączniki $Q_1$ i~$Q_4$, a~w~przeciwnym przypadku -- łączniki $Q_2$ i~$Q_3$.
 Gałąź~b pracuje więc komplementarnie do gałęzi~a ($s_\mathrm{b} = 1 -
 s_\mathrm{a}$), a~napięcie wyjściowe przyjmuje wyłącznie wartości
-$+U_\mathrm{DC}$ oraz $-U_\mathrm{DC}$ (rys.~\ref{fig:pwm-bipolarna}).
+$+U_\mathrm{DC}$ oraz $-U_\mathrm{DC}$ (rys.~\ref{fig:pwm-bipolarna})~\cite[s.~20]{instrukcja}.
 W~zakresie liniowym, tj.~dla $m_\mathrm{a} \leq 1$, amplituda składowej
 podstawowej napięcia wyjściowego wynosi~\cite[s.~11--12]{instrukcja},
 \cite[podrozdz.~8-3-2-1]{mohan2003}:
@@ -424,7 +426,7 @@ podstawowej napięcia wyjściowego wynosi~\cite[s.~11--12]{instrukcja},
 Widmo napięcia wyjściowego (rys.~\ref{fig:widma}a) zawiera, oprócz
 składowej podstawowej, grupy harmonicznych skupione wokół częstotliwości
 nośnej i~jej wielokrotności, tzn.~wokół rzędów $m_\mathrm{f}$,
-$2m_\mathrm{f}$, $3m_\mathrm{f}$ itd. Najsilniejsza jest harmoniczna rzędu
+$2m_\mathrm{f}$, $3m_\mathrm{f}$ itd.~\cite[s.~193]{mohan2012}. Najsilniejsza jest harmoniczna rzędu
 $m_\mathrm{f}$, której amplituda dla $m_\mathrm{a} = 0{,}8$ przekracza
 amplitudę składowej podstawowej. Dla $m_\mathrm{a} > 1$ (nadmodulacja)
 zależność~\eqref{eq:uo1} przestaje obowiązywać -- amplituda składowej
@@ -435,7 +437,7 @@ harmoniczne niskich rzędów~\cite[s.~11--12]{instrukcja}, \cite[podrozdz.~8-2-1
 Zaletą modulacji bipolarnej jest prostota realizacji (jeden komparator,
 jeden sygnał sterujący i~jego negacja), wadą natomiast duża amplituda
 skoków napięcia wyjściowego, równa $2U_\mathrm{DC}$, oraz związane z~nią
-duże tętnienia prądu w~dławiku filtru wyjściowego. Zakładając, że napięcie
+duże tętnienia prądu w~dławiku filtru wyjściowego~\cite[s.~10, 20]{instrukcja}. Zakładając, że napięcie
 na kondensatorze filtru jest w~okresie łączeń w~przybliżeniu stałe,
 maksymalna międzyszczytowa wartość tętnień prądu dławika o~indukcyjności
 $L_\mathrm{f}$, występująca przy przejściu napięcia wyjściowego przez zero,
@@ -454,7 +456,7 @@ tego samego sygnału nośnego z~sygnałem odwróconym $-u_\mathrm{ref}$
 (rys.~\ref{fig:pwm-unipolarna}). Wykorzystywane są przy tym również stany
 zerowe mostka (tab.~\ref{tab:stany-mostka}). W~dodatnim półokresie składowej
 podstawowej napięcie wyjściowe przełącza się między wartościami
-$+U_\mathrm{DC}$ i~$0$, a~w~ujemnym -- między $0$ i~$-U_\mathrm{DC}$.
+$+U_\mathrm{DC}$ i~$0$, a~w~ujemnym -- między $0$ i~$-U_\mathrm{DC}$~\cite[s.~11--12]{instrukcja}.
 Amplituda składowej podstawowej w~zakresie liniowym jest taka sama jak
 w~modulacji bipolarnej i~opisuje ją zależność~\eqref{eq:uo1}.
 
