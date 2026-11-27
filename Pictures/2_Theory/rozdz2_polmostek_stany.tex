@@ -2,7 +2,9 @@
 % Wstawiany wewnatrz srodowiska figure; podpis i etykieta w pliku rozdzialu.
 % \polmostekstan{n}: n = 1 (Q1, io>0), 2 (D2, io>0), 3 (Q2, io<0), 4 (D1, io<0)
 \definecolor{stanakt}{RGB}{196,30,58}   % element/przewod przewodzacy
-\definecolor{stannie}{gray}{0.62}       % elementy nieaktywne
+\definecolor{stannie}{gray}{0}          % elementy nieaktywne (czarne)
+\tikzset{stanakt/.style={color=stanakt, line width=1.3pt},
+         stannie/.style={color=stannie, line width=0.5pt}}
 \providecommand{\polmostekstan}[1]{%
   \def\cQa{stannie}\def\cQb{stannie}\def\cDa{stannie}\def\cDb{stannie}%
   \def\cCa{stannie}\def\cCb{stannie}%
@@ -26,25 +28,25 @@
     \draw[stannie] (0,0) to[V, l=$U_\mathrm{DC}$, invert] (0,6);
     \draw[stannie] (0,6) -- (2.2,6);
     \draw[stannie] (0,0) -- (2.2,0);
-    \draw[\cTopL, line width=1.2pt] (2.2,6) -- (3.2,6);
-    \draw[\cTop,  line width=1.2pt] (3.2,6) -- (6.4,6);
-    \draw[\cBotL, line width=1.2pt] (2.2,0) -- (3.2,0);
-    \draw[\cBot,  line width=1.2pt] (3.2,0) -- (6.4,0);
+    \draw[\cTopL] (2.2,6) -- (3.2,6);
+    \draw[\cTop] (3.2,6) -- (6.4,6);
+    \draw[\cBotL] (2.2,0) -- (3.2,0);
+    \draw[\cBot] (3.2,0) -- (6.4,0);
     % tranzystory
     \node[nmos, anchor=D, color=\cQa] (Q1) at (2.2,6) {};
     \node[nmos, anchor=S, color=\cQb] (Q2) at (2.2,0) {};
     \node[left, text=\cQa] at (Q1.G) {$Q_1$};
     \node[left, text=\cQb] at (Q2.G) {$Q_2$};
-    \draw[\cLegA, line width=1.2pt] (Q1.S) -- (2.2,3);
-    \draw[\cLegB, line width=1.2pt] (2.2,3) -- (Q2.D);
-    \draw[\cNode, line width=1.2pt] (2.2,3) -- (3.2,3);
+    \draw[\cLegA] (Q1.S) -- (2.2,3);
+    \draw[\cLegB] (2.2,3) -- (Q2.D);
+    \draw[\cNode] (2.2,3) -- (3.2,3);
     % diody zwrotne
-    \draw[\cDa, line width=1.2pt] (3.2,3) to[D*, l_=$D_1$, color=\cDa] (3.2,6);
-    \draw[\cDb, line width=1.2pt] (3.2,0) to[D*, l_=$D_2$, color=\cDb] (3.2,3);
+    \draw[\cDa] (3.2,3) to[D*, l_=$D_1$, color=\cDa] (3.2,6);
+    \draw[\cDb] (3.2,0) to[D*, l_=$D_2$, color=\cDb] (3.2,3);
     % obciazenie i dzielnik pojemnosciowy
-    \draw[stanakt, line width=1.2pt] (3.2,3) to[generic, l=$Z_\mathrm{o}$, color=stanakt] (6.4,3);
-    \draw[\cCa, line width=1.2pt] (6.4,6) to[C, l=$C_1$, color=\cCa] (6.4,3);
-    \draw[\cCb, line width=1.2pt] (6.4,3) to[C, l=$C_2$, color=\cCb] (6.4,0);
+    \draw[stanakt] (3.2,3) to[generic, l=$Z_\mathrm{o}$, color=stanakt] (6.4,3);
+    \draw[\cCa] (6.4,6) to[C, l=$C_1$, color=\cCa] (6.4,3);
+    \draw[\cCb] (6.4,3) to[C, l=$C_2$, color=\cCb] (6.4,0);
     % wezly
     \foreach \p in {(2.2,3),(3.2,3),(6.4,3),(3.2,6),(6.4,6),(3.2,0),(6.4,0)}
       \fill \p circle (1.6pt);

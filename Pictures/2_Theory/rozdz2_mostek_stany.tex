@@ -5,7 +5,9 @@
 %   3 - D2 i D3, io>0, uo=-UDC     4 - D1 i D4, io<0, uo=+UDC
 %   5 - Q1 i D3, io>0, uo=0        6 - Q2 i D4, io<0, uo=0
 \definecolor{stanakt}{RGB}{196,30,58}   % element/przewod przewodzacy
-\definecolor{stannie}{gray}{0.62}       % elementy nieaktywne
+\definecolor{stannie}{gray}{0}          % elementy nieaktywne (czarne)
+\tikzset{stanakt/.style={color=stanakt, line width=1.3pt},
+         stannie/.style={color=stannie, line width=0.5pt}}
 \providecommand{\mostekstan}[1]{%
   % kolory: Q - tranzystory, D - diody, C - kondensator DC,
   % T/B - szyna gorna/dolna (L: C-galaz a, A: wewnatrz galezi a,
@@ -58,36 +60,36 @@
     \draw[stannie] (0,0) to[V, l=$U_\mathrm{DC}$, invert] (0,6);
     \draw[stannie] (0,6) -- (1.4,6);
     \draw[stannie] (0,0) -- (1.4,0);
-    \draw[\cC, w] (1.4,6) to[C, l=$C_\mathrm{DC}$, color=\cC] (1.4,0);
+    \draw[\cC] (1.4,6) to[C, l=$C_\mathrm{DC}$, color=\cC] (1.4,0);
     \node[above] at (0.7,6) {P};
     \node[below] at (0.7,0) {N};
     % szyny
-    \draw[\cTL, w] (1.4,6) -- (3.6,6);  \draw[\cBL, w] (1.4,0) -- (3.6,0);
-    \draw[\cTA, w] (3.6,6) -- (4.5,6);  \draw[\cBA, w] (3.6,0) -- (4.5,0);
-    \draw[\cTM, w] (4.5,6) -- (7.6,6);  \draw[\cBM, w] (4.5,0) -- (7.6,0);
-    \draw[\cTB, w] (7.6,6) -- (8.5,6);  \draw[\cBB, w] (7.6,0) -- (8.5,0);
+    \draw[\cTL] (1.4,6) -- (3.6,6);  \draw[\cBL] (1.4,0) -- (3.6,0);
+    \draw[\cTA] (3.6,6) -- (4.5,6);  \draw[\cBA] (3.6,0) -- (4.5,0);
+    \draw[\cTM] (4.5,6) -- (7.6,6);  \draw[\cBM] (4.5,0) -- (7.6,0);
+    \draw[\cTB] (7.6,6) -- (8.5,6);  \draw[\cBB] (7.6,0) -- (8.5,0);
     % galaz a
     \node[nmos, anchor=D, color=\cQa] (Q1) at (3.6,6) {};
     \node[nmos, anchor=S, color=\cQb] (Q2) at (3.6,0) {};
     \node[left, text=\cQa] at (Q1.G) {$Q_1$};
     \node[left, text=\cQb] at (Q2.G) {$Q_2$};
-    \draw[\cLaa, w] (Q1.S) -- (3.6,3);
-    \draw[\cLab, w] (3.6,3) -- (Q2.D);
-    \draw[\cNa, w] (3.6,3) -- (4.5,3);
-    \draw[\cDa, w] (4.5,3) to[D*, l_=$D_1$, color=\cDa] (4.5,6);
-    \draw[\cDb, w] (4.5,0) to[D*, l_=$D_2$, color=\cDb] (4.5,3);
+    \draw[\cLaa] (Q1.S) -- (3.6,3);
+    \draw[\cLab] (3.6,3) -- (Q2.D);
+    \draw[\cNa] (3.6,3) -- (4.5,3);
+    \draw[\cDa] (4.5,3) to[D*, l_=$D_1$, color=\cDa] (4.5,6);
+    \draw[\cDb] (4.5,0) to[D*, l_=$D_2$, color=\cDb] (4.5,3);
     % galaz b
     \node[nmos, anchor=D, color=\cQc] (Q3) at (7.6,6) {};
     \node[nmos, anchor=S, color=\cQd] (Q4) at (7.6,0) {};
     \node[left, text=\cQc] at (Q3.G) {$Q_3$};
     \node[left, text=\cQd] at (Q4.G) {$Q_4$};
-    \draw[\cLba, w] (Q3.S) -- (7.6,3);
-    \draw[\cLbb, w] (7.6,3) -- (Q4.D);
-    \draw[\cNb, w] (7.6,3) -- (8.5,3);
-    \draw[\cDc, w] (8.5,3) to[D*, l_=$D_3$, color=\cDc] (8.5,6);
-    \draw[\cDd, w] (8.5,0) to[D*, l_=$D_4$, color=\cDd] (8.5,3);
+    \draw[\cLba] (Q3.S) -- (7.6,3);
+    \draw[\cLbb] (7.6,3) -- (Q4.D);
+    \draw[\cNb] (7.6,3) -- (8.5,3);
+    \draw[\cDc] (8.5,3) to[D*, l_=$D_3$, color=\cDc] (8.5,6);
+    \draw[\cDd] (8.5,0) to[D*, l_=$D_4$, color=\cDd] (8.5,3);
     % obciazenie
-    \draw[stanakt, w] (4.5,3) to[generic, l=$Z_\mathrm{o}$, color=stanakt] (7.6,3);
+    \draw[stanakt] (4.5,3) to[generic, l=$Z_\mathrm{o}$, color=stanakt] (7.6,3);
     % wezly
     \foreach \p in {(1.4,6),(1.4,0),(3.6,3),(4.5,3),(4.5,6),(4.5,0),
                     (7.6,3),(8.5,3),(7.6,6),(7.6,0)}
