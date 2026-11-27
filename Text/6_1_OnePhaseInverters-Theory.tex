@@ -64,13 +64,16 @@ w~stanie ustalonym przewodzi zawsze dokładnie jeden z~nich. Stan gałęzi opisu
 funkcja przełączająca $s_\mathrm{a} \in \{0, 1\}$, równa~$1$ przy załączonym
 łączniku górnym i~$0$ przy dolnym. Napięcie węzła wyjściowego względem bieguna
 ujemnego wynosi:
+gdzie:
 \begin{equation}
   u_\mathrm{aN}(t) = s_\mathrm{a}(t)\, U_\mathrm{DC},
   \label{eq:uaN}
 \end{equation}
 gdzie:
 \begin{conditions}
-  U_\mathrm{DC} & napięcie obwodu pośredniczącego.
+  u_\mathrm{aN}(t) & napięcie węzła wyjściowego gałęzi~a względem bieguna ujemnego, \\
+  s_\mathrm{a}(t)  & funkcja przełączająca gałęzi, \\
+  U_\mathrm{DC}    & napięcie obwodu prądu stałego.
 \end{conditions}
 
 Napięcie to nie zależy od kierunku prądu obciążenia. Nawet gdy prąd przejmuje
@@ -78,8 +81,7 @@ dioda zwrotna, potencjał węzła wyznacza stan wysterowania łączników. Tym
 falownik napięcia różni się od przekształtników z~elementami niesterowanymi.
 
 Przy przełączaniu z~częstotliwością $f_\mathrm{s} = 1/T_\mathrm{s}$
-i~współczynniku wypełnienia $D_\mathrm{a}$ (względnym czasie załączenia
-łącznika górnego) średnie napięcie gałęzi w~okresie łączeń wynosi:
+i~współczynniku wypełnienia $D_\mathrm{a}$ średnie napięcie gałęzi w~okresie łączeń wynosi:
 \begin{equation}
   \bar{u}_\mathrm{aN} = \frac{1}{T_\mathrm{s}} \int_{0}^{T_\mathrm{s}}
   u_\mathrm{aN}(t)\, \mathrm{d}t = D_\mathrm{a}\, U_\mathrm{DC},
