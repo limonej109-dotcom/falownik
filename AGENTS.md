@@ -104,6 +104,15 @@ szkielety z nagłówkami podrozdziałów.
 - Cytowania: `\cite{klucz}`, wpisy w `Config/Bibliography.bib`, styl
   `IEEEtranDOI`. Nie wymyślać pozycji literaturowych. Jeśli danych nie da się
   zweryfikować, oznaczyć wpis komentarzem `% UZUPEŁNIĆ`.
+- **Cytowania z lokalizacją w źródle** (żeby autor mógł zweryfikować):
+  `\cite[s.~200]{mohan2003}`, przy kilku źródłach osobne `\cite[...]{...}`
+  oddzielone przecinkiem. Gdy numer strony nie jest potwierdzony, podawać
+  numer podrozdziału, np. `\cite[podrozdz.~8-5]{mohan2003}`.
+- Preferowane źródła autora (są w projekcie): `mohan2003` (Mohan, Undeland,
+  Robbins, 3. wyd. – skan bez warstwy tekstowej, strony 200–203 potwierdzone
+  zrzutami ekranu autora), `mohan2012` (Mohan, *Power Electronics: A First
+  Course*, numeracja stron sprawdzona w tekście) oraz `instrukcja` (strony
+  sprawdzone w tekście). Źródła zewnętrzne tylko z DOI lub linkiem.
 
 ### Oznaczenia używane w pracy (trzymać się ich konsekwentnie)
 
@@ -166,7 +175,11 @@ z autorem, czy nadal są aktualne.
 
 - `Config/Bibliography.bib`, wpis `instrukcja`: uzupełnić autorów i rok
   instrukcji „Falowniki jednofazowe – zajęcia symulacyjne” (AGH, KEiASPE).
-- Zweryfikować w katalogu biblioteki dane pozycji `barlik1998`.
+- Pozycje `barlik1998`, `rashid2014`, `bose2002`, `kjaer2005`,
+  `kazmierkowski2002` są w `Bibliography.bib`, ale od 2026-11-27 nie są cytowane
+  (zastąpione źródłami autora z numerami stron).
+- Rozdział 2: numery podrozdziałów `mohan2003` (8-2-1, 8-3-x, 8-5, 8-6) zamienić
+  na numery stron po sprawdzeniu w książce przez autora.
 - Rozdział 2, akapit końcowy podrozdziału 2.4: sprawdzić, czy opis
   możliwości stanowiska zgadza się z rozdziałem 3.
 - Dane autora, tytuł pracy i promotora w `0_EngineeringThesis.tex` są jeszcze

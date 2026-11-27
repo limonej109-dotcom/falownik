@@ -19,7 +19,7 @@ i~\ref{chap: Badania eksperymentalne}.
 Falownikiem (inwerterem) nazywa się przekształtnik energoelektroniczny,
 który przetwarza energię prądu stałego na energię prądu przemiennego
 o~regulowanej amplitudzie i~częstotliwości napięcia
-wyjściowego~\cite{barlik1998,mohan2003}. Ze względu na charakter źródła 
+wyjściowego~\cite[s.~200]{mohan2003}, \cite[s.~3]{instrukcja}. Ze względu na charakter źródła 
 zasilającego obwód prądu stałego wyróżnia się dwie podstawowe grupy
 falowników:
 \begin{itemize}
@@ -32,7 +32,7 @@ falowników:
 \end{itemize}
 W~dalszej części pracy rozpatrywane są wyłącznie falowniki napięcia, ze względu na to, że
 są to rozwiązanie dominujące w~praktyce, szczególnie w~zakresie małych i~średnich
-mocy~\cite{rashid2014,bose2002}. Najważniejsze elementy które wchodzą w skład falownika napięcia to:
+mocy~\cite[s.~201]{mohan2003}. Najważniejsze elementy które wchodzą w skład falownika napięcia to:
 
 Kondensatory obwodu prądu stałego $C_\mathrm{DC}$ (ang. DC-link)
 utrzymują w~przybliżeniu stałą wartość napięcia $U_\mathrm{DC}$ w~czasie
@@ -42,7 +42,7 @@ pobieranego przez łączniki oraz przejmują energię zwracaną z~obciążenia.
 Umieszczenie kondensatorów w~bezpośrednim sąsiedztwie łączników pozwala
 zamknąć składowe prądu o~wysokiej częstotliwości w~obwodzie o~małej
 powierzchni, co ogranicza wpływ indukcyjności pasożytniczych i~związane
-z~nimi przepięcia podczas przełączeń. Dzięki stabilnemu napięciu
+z~nimi przepięcia podczas przełączeń~\cite[s.~203]{mohan2012}. Dzięki stabilnemu napięciu
 $U_\mathrm{DC}$ napięcie wyjściowe falownika jest odwzorowywane zgodnie
 z~zadanym wzorcem modulacji, a~jego zniekształcenia wynikające z~tętnień
 napięcia obwodu pośredniczącego pozostają niewielkie.\\ Łączniki falownika są elementami w~pełni sterowalnymi
@@ -53,7 +53,8 @@ tranzystora, każdy łącznik bocznikuje się równoległą przeciwnie do przewo
 zwrotną. W~przypadku tranzystorów MOSFET funkcję tę może pełnić wewnętrzna
 dioda podłożowa (ang.~\textit{body diode}). Otrzymuje się w~ten sposób
 łącznik dwukierunkowy prądowo i~jednokierunkowy
-napięciowo~\cite{mohan2003}.
+napięciowo~\cite[s.~202--203]{mohan2003}, \cite[s.~190]{mohan2012},
+\cite[s.~4--5]{instrukcja}.
 
 \subsubsection*{Gałąź łącznikowa}
 
@@ -91,7 +92,7 @@ i~współczynniku wypełnienia $D_\mathrm{a}$ średnie napięcie gałęzi w~okre
 Gdy $D_\mathrm{a}$ zmienia się wolno w~porównaniu z~okresem łączeń
 ($f_1 \ll f_\mathrm{s}$, gdzie $f_1$ to częstotliwość podstawowa napięcia
 wyjściowego), gałąź działa dla składowych wolnozmiennych jak sterowane źródło
-napięcia. Na tym opierają się metody PWM opisane
+napięcia~\cite[s.~191--192, 200]{mohan2012}. Na tym opierają się metody PWM opisane
 w~podrozdziale~\ref{sec: Metody modulacji PWM}.
 
 \subsubsection*{Kierunek przepływu energii}
@@ -106,7 +107,7 @@ diodowy lub zasilacz laboratoryjny), zwrócona energia doładowuje kondensator
 $C_\mathrm{DC}$, co powoduje wzrost napięcia obwodu pośredniczącego. Zjawisko
 to należy uwzględnić przy doborze pojemności i~napięcia znamionowego
 kondensatorów oraz przy projektowaniu zabezpieczeń
-nadnapięciowych~\cite{mohan2003}.
+nadnapięciowych~\cite[s.~200--203]{mohan2003}.
 
 \subsubsection*{Czas martwy}
 
@@ -118,13 +119,13 @@ tranzystory. Powoduje to zwarcie obwodu pośredniczącego przez gałąź
 rezystancjami pasożytniczymi, co prowadzi do wzrostu strat lub uszkodzenia
 łączników. Aby temu zapobiec, każde zbocze narastające sygnału sterującego
 opóźnia się o~czas martwy $t_\mathrm{d}$ (ang.~\textit{dead time}),
-w~którym oba łączniki gałęzi są wyłączone~\cite{instrukcja}.
+w~którym oba łączniki gałęzi są wyłączone~\cite[s.~3, 10]{instrukcja}.
 
 W~czasie martwym potencjał węzła wyjściowego wyznacza kierunek prądu
 obciążenia, ponieważ prąd przejmuje jedna z~diod zwrotnych. W~efekcie
 rzeczywiste napięcie gałęzi różni się od napięcia zadanego. Dla falownika
 mostkowego wartość średnia błędu napięcia wyjściowego w~okresie łączeń
-wynosi w~przybliżeniu~\cite{murai1987}:
+wynosi w~przybliżeniu~\cite{murai1987}, \cite[podrozdz.~8-5]{mohan2003}:
 \begin{equation}
   \Delta \bar{u}_\mathrm{o} \approx -2\, t_\mathrm{d}\, f_\mathrm{s}\,
   U_\mathrm{DC}\, \operatorname{sgn}(i_\mathrm{o}),
@@ -174,7 +175,8 @@ napięcie wyjściowe przyjmuje dwie wartości:
   \input{Pictures/2_Theory/rozdz2_polmostek}
   \caption{Schemat jednofazowego falownika półmostkowego}
   \label{fig:polmostek}
-  \zrodlo{opracowanie własne na podstawie~\cite{mohan2003}}
+  \zrodlo{opracowanie własne na podstawie~\cite[s.~3--4]{instrukcja},
+    \cite[podrozdz.~8-3-1]{mohan2003}}
 \end{figure}
 
 Przy sterowaniu przebiegiem prostokątnym (każdy łącznik przewodzi przez
@@ -189,7 +191,7 @@ jedynie połowy napięcia obwodu pośredniczącego oraz to, że cały prąd
 obciążenia płynie przez kondensatory dzielnika. Wymaga to stosowania
 kondensatorów o~dużej pojemności i~dopuszczalnym prądzie tętnień, a~przy
 obciążeniu zawierającym składową stałą prowadzi do niesymetrii napięć
-na kondensatorach~\cite{mohan2003,rashid2014}.
+na kondensatorach~\cite[s.~4, 15]{instrukcja}, \cite[podrozdz.~8-3-1]{mohan2003}.
 
 \subsubsection*{Falownik mostkowy}
 
@@ -209,7 +211,8 @@ wyjściowe jest różnicą napięć gałęzi:
   \input{Pictures/2_Theory/rozdz2_mostek}
   \caption{Schemat jednofazowego falownika mostkowego (mostka H)}
   \label{fig:mostek-h}
-  \zrodlo{opracowanie własne na podstawie~\cite{mohan2003,instrukcja}}
+  \zrodlo{opracowanie własne na podstawie~\cite[s.~4--5]{instrukcja},
+    \cite[podrozdz.~8-3-2]{mohan2003}}
 \end{figure}
 
 Dopuszczalne stany łączników mostka zestawiono w~tabeli~\ref{tab:stany-mostka}.
@@ -236,7 +239,7 @@ opisanej w~podrozdziale~\ref{sec: Metody modulacji PWM}.
     0 & 1 & 0 & 1 & 0 & 0 & $0$ & zerowy (łączniki dolne) \\
     \bottomrule
   \end{tabular}
-  \zrodlo{opracowanie własne}
+  \zrodlo{opracowanie własne na podstawie~\cite[s.~5]{instrukcja}}
 \end{table}
 
 Przy sterowaniu przebiegiem prostokątnym amplituda harmonicznej rzędu $n$
@@ -251,7 +254,8 @@ Przy tym samym napięciu blokowania łączników, równym $U_\mathrm{DC}$,
 falownik mostkowy dostarcza zatem dwukrotnie większego napięcia
 wyjściowego, a~przy tej samej mocy wyjściowej -- dwukrotnie mniejszego
 prądu niż układ półmostkowy. Ceną za to jest podwojenie liczby łączników
-i~układów sterowania bramkowego~\cite{mohan2003}.
+i~układów sterowania bramkowego~\cite[s.~5, 7--8]{instrukcja},
+\cite[podrozdz.~8-3-2]{mohan2003}.
 
 Istotną cechą konstrukcyjną mostka~H jest to, że źródła tranzystorów
 górnych $Q_1$ i~$Q_3$ dołączone są do węzłów wyjściowych a~i~b, których
@@ -272,7 +276,7 @@ z~odczepem środkowym uzwojenia pierwotnego i~dwa łączniki, których źródła
 dołączone są do wspólnego potencjału. Upraszcza to sterowanie, jednak
 łączniki muszą blokować napięcie $2U_\mathrm{DC}$, a~transformator pracuje
 z~częstotliwością podstawową napięcia wyjściowego lub wymaga dodatkowego
-stopnia przetwarzania~\cite{mohan2003}. Układ ten stosuje się głównie przy
+stopnia przetwarzania~\cite[s.~152]{mohan2012}, \cite[podrozdz.~8-3-3]{mohan2003}. Układ ten stosuje się głównie przy
 niskich napięciach zasilania, np.~w~przetwornicach zasilanych z~akumulatorów.
 
 W~zastosowaniach wymagających wyższych napięć lub lepszej jakości napięcia
@@ -280,11 +284,11 @@ wyjściowego stosuje się topologie wielopoziomowe, np.~gałęzie z~punktem
 neutralnym ograniczonym diodami (NPC) lub kaskadowe połączenie mostków~H,
 które pozwalają uzyskać większą liczbę poziomów napięcia wyjściowego
 i~zmniejszyć napięcie blokowania pojedynczego
-łącznika~\cite{holmes2003}. W~beztransformatorowych falownikach
+łącznika~\cite[s.~212]{mohan2012}. W~beztransformatorowych falownikach
 fotowoltaicznych stosuje się z~kolei modyfikacje mostka~H (np.~H5, HERIC),
 w~których dodatkowe łączniki odłączają panel od sieci w~stanach zerowych,
 ograniczając prąd upływu do ziemi przez pojemność pasożytniczą
-paneli~\cite{kjaer2005,teodorescu2011}.
+paneli~\cite[s.~11--15]{teodorescu2011}.
 
 Porównanie podstawowych topologii jednofazowych zestawiono
 w~tabeli~\ref{tab:porownanie-topologii}.
@@ -308,7 +312,8 @@ w~tabeli~\ref{tab:porownanie-topologii}.
     Sterowniki o~pływającym potencjale & 1 & 2 & 0 \\
     \bottomrule
   \end{tabular}
-  \zrodlo{opracowanie własne na podstawie~\cite{mohan2003,rashid2014};
+  \zrodlo{opracowanie własne na podstawie~\cite[s.~4--5]{instrukcja},
+    \cite[s.~152]{mohan2012};
     $\vartheta$ -- przekładnia transformatora}
 \end{table}
 
@@ -323,7 +328,7 @@ częstotliwości, w~którym można je łatwo odfiltrować. W~modulacji szerokoś
 impulsów (ang.~\textit{Pulse Width Modulation}, PWM) napięcie wyjściowe ma
 postać ciągu impulsów o~stałej amplitudzie i~zmiennej szerokości, a~jego
 wartość średnia w~każdym okresie łączeń odwzorowuje wartość chwilową
-przebiegu zadanego~\cite{holmes2003}.
+przebiegu zadanego~\cite[s.~191--193, 200]{mohan2012}.
 
 \subsubsection*{Sterowanie przebiegiem prostokątnym i~pojedynczym impulsem}
 
@@ -334,14 +339,16 @@ Amplituda składowej podstawowej osiąga wówczas największą możliwą wartoś
 $\frac{4}{\pi}U_\mathrm{DC} \approx 1{,}27\,U_\mathrm{DC}$ zgodnie
 z~zależnością~\eqref{eq:mostek-harm}, ale nie można jej regulować inaczej
 niż przez zmianę napięcia $U_\mathrm{DC}$, a~widmo zawiera harmoniczne
-niskich rzędów o~amplitudach odwrotnie proporcjonalnych do rzędu.
+niskich rzędów o~amplitudach odwrotnie proporcjonalnych do
+rzędu~\cite[s.~7--8]{instrukcja}, \cite[podrozdz.~8-2-2]{mohan2003}.
 
 Regulację amplitudy umożliwia sterowanie pojedynczym impulsem, nazywane
 również sterowaniem z~przesunięciem fazowym (ang.~\textit{phase-shift
 control}). Gałęzie a~i~b przełączane są przebiegiem prostokątnym, lecz
 przesuniętym względem siebie, dzięki czemu w~każdym półokresie występuje
 impuls napięcia o~szerokości $\delta$ oraz przedziały stanu zerowego.
-Amplituda harmonicznej rzędu $n$ wynosi~\cite{mohan2003}:
+Amplituda harmonicznej rzędu $n$ wynosi~\cite[s.~8--9]{instrukcja},
+\cite[podrozdz.~8-3-2]{mohan2003}:
 \begin{equation}
   \hat{U}_{\mathrm{o}(n)} = \frac{4}{n\pi}\, U_\mathrm{DC}
   \sin\!\left(\frac{n\delta}{2}\right), \qquad n = 1, 3, 5, \ldots
@@ -358,7 +365,7 @@ W~komparacyjnej (porównawczej) sinusoidalnej modulacji PWM
 (ang.~\textit{Sinusoidal PWM}, SPWM) sygnał modulujący (referencyjny)
 $u_\mathrm{ref}$ o~częstotliwości $f_1$ porównywany jest z~sygnałem nośnym
 $u_\mathrm{tri}$ o~przebiegu trójkątnym i~częstotliwości $f_\mathrm{s}$.
-Wynik porównania decyduje o~stanie łączników~\cite{mohan2003,instrukcja}.
+Wynik porównania decyduje o~stanie łączników~\cite[s.~9--10]{instrukcja}, \cite[s.~191--192]{mohan2012}.
 Właściwości modulacji opisują dwa współczynniki -- współczynnik głębokości
 modulacji amplitudowej:
 \begin{equation}
@@ -384,7 +391,7 @@ wartościach $m_\mathrm{f}$ modulacja asynchroniczna wprowadza
 subharmoniczne i~niesymetrię przebiegu wyjściowego, dlatego zaleca się
 modulację synchroniczną. Dla $m_\mathrm{f} > 21$ efekty te stają się
 pomijalne i~częstotliwość nośna może być stała, niezależna od
-częstotliwości wyjściowej~\cite{mohan2003}. W~falownikach tranzystorowych
+częstotliwości wyjściowej~\cite[s.~9]{instrukcja}, \cite[podrozdz.~8-2-1]{mohan2003}. W~falownikach tranzystorowych
 o~częstotliwości wyjściowej \SI{50}{\hertz} i~częstotliwości łączeń
 rzędu kilkunastu do kilkudziesięciu kiloherców warunek ten jest spełniony
 z~dużym zapasem.
@@ -398,7 +405,8 @@ Gałąź~b pracuje więc komplementarnie do gałęzi~a ($s_\mathrm{b} = 1 -
 s_\mathrm{a}$), a~napięcie wyjściowe przyjmuje wyłącznie wartości
 $+U_\mathrm{DC}$ oraz $-U_\mathrm{DC}$ (rys.~\ref{fig:pwm-bipolarna}).
 W~zakresie liniowym, tj.~dla $m_\mathrm{a} \leq 1$, amplituda składowej
-podstawowej napięcia wyjściowego wynosi~\cite{mohan2003}:
+podstawowej napięcia wyjściowego wynosi~\cite[s.~11--12]{instrukcja},
+\cite[podrozdz.~8-3-2-1]{mohan2003}:
 \begin{equation}
   \hat{U}_{\mathrm{o}(1)} = m_\mathrm{a}\, U_\mathrm{DC},
   \qquad 0 \leq m_\mathrm{a} \leq 1.
@@ -424,7 +432,7 @@ amplitudę składowej podstawowej. Dla $m_\mathrm{a} > 1$ (nadmodulacja)
 zależność~\eqref{eq:uo1} przestaje obowiązywać -- amplituda składowej
 podstawowej rośnie nieliniowo aż do wartości $\frac{4}{\pi}U_\mathrm{DC}$,
 odpowiadającej pracy z~przebiegiem prostokątnym, a~w~widmie pojawiają się
-harmoniczne niskich rzędów~\cite{mohan2003,instrukcja}.
+harmoniczne niskich rzędów~\cite[s.~11--12]{instrukcja}, \cite[podrozdz.~8-2-1]{mohan2003}.
 
 Zaletą modulacji bipolarnej jest prostota realizacji (jeden komparator,
 jeden sygnał sterujący i~jego negacja), wadą natomiast duża amplituda
@@ -471,7 +479,7 @@ wyjściowe zawiera impulsy o~częstotliwości $2f_\mathrm{s}$, mimo że każdy
 napięcia wyjściowego (rys.~\ref{fig:widma}b) harmoniczne skupione wokół
 nieparzystych wielokrotności częstotliwości nośnej ulegają wzajemnej
 kompensacji, a~pierwsza grupa harmonicznych występuje w~otoczeniu rzędu
-$2m_\mathrm{f}$~\cite{mohan2003,holmes2003}. Skok napięcia wyjściowego przy
+$2m_\mathrm{f}$~\cite[s.~12]{instrukcja}, \cite[podrozdz.~8-3-2-2]{mohan2003}. Skok napięcia wyjściowego przy
 pojedynczym przełączeniu wynosi $U_\mathrm{DC}$, a~nie $2U_\mathrm{DC}$.
 Przy analogicznych założeniach jak dla zależności~\eqref{eq:tetnienia-bip}
 maksymalne tętnienia prądu dławika wynoszą:
@@ -499,11 +507,11 @@ sygnałów sterujących oraz to, że potencjał wspólny obu zacisków wyjściow
 względem obwodu pośredniczącego, $u_\mathrm{cm} = (u_\mathrm{aN} +
 u_\mathrm{bN})/2$, zmienia się skokowo z~częstotliwością łączeń. Ma to
 znaczenie np.~w~beztransformatorowych falownikach fotowoltaicznych, gdzie
-składowa wspólna wymusza przepływ prądu upływu~\cite{kjaer2005}. Spotyka się
+składowa wspólna wymusza przepływ prądu upływu~\cite[s.~5--15]{teodorescu2011}. Spotyka się
 również wariant hybrydowy, w~którym jedna gałąź przełączana jest
 z~częstotliwością podstawową $f_1$, a~modulacja PWM realizowana jest tylko
 w~drugiej gałęzi, co zmniejsza straty łączeniowe kosztem większych niż w~modulacji
-unipolarnej tętnień prądu~\cite{holmes2003}. Właściwości obu omówionych metod zestawiono
+unipolarnej tętnień prądu~\cite[s.~200--206]{holmes2003}. Właściwości obu omówionych metod zestawiono
 w~tabeli~\ref{tab:porownanie-pwm}.
 
 \begin{table}[htbp]
@@ -524,7 +532,8 @@ w~tabeli~\ref{tab:porownanie-pwm}.
     Liczba niezależnych sygnałów sterujących & 1 & 2 \\
     \bottomrule
   \end{tabular}
-  \zrodlo{opracowanie własne na podstawie~\cite{mohan2003,holmes2003}}
+  \zrodlo{opracowanie własne na podstawie~\cite[s.~10--12]{instrukcja},
+    \cite[podrozdz.~8-3-2]{mohan2003}}
 \end{table}
 
 \subsubsection*{Realizacja cyfrowa}
@@ -541,7 +550,7 @@ lub dwa razy w~okresie łączeń, mówi się o~próbkowaniu regularnym
 symetrycznym lub asymetrycznym, w~odróżnieniu od próbkowania naturalnego
 występującego w~analogowym modulatorze komparacyjnym. Przy dużych
 wartościach $m_\mathrm{f}$ różnice między tymi metodami są
-pomijalne~\cite{holmes2003}. Liczniki przeznaczone do sterowania
+pomijalne~\cite[podrozdz.~3.6]{holmes2003}. Liczniki przeznaczone do sterowania
 przekształtnikami mają zazwyczaj wbudowane generatory komplementarnych
 sygnałów z~programowanym czasem martwym oraz wejścia awaryjnego
 wyłączenia, co upraszcza realizację zabezpieczeń.
@@ -551,7 +560,7 @@ z~eliminacją wybranych harmonicznych (ang.~\textit{Selective Harmonic
 Elimination}, SHE), w~której kąty przełączeń wyznacza się analitycznie lub
 numerycznie, oraz metody z~bezpośrednią regulacją prądu, np.~regulację
 histerezową, w~której częstotliwość łączeń nie jest
-stała~\cite{kazmierkowski2002,holmes2003}.
+stała~\cite[podrozdz.~8-6]{mohan2003}.
 
 % ---------------------------------------------------------------------
 \section{Zastosowania falowników w~energoelektronice}
@@ -568,32 +577,34 @@ kilowatów. Do najważniejszych obszarów zastosowań należą:
     one zwykle z~regulacją prądu wyjściowego synchronizowanego z~napięciem
     sieci za pomocą pętli fazowej (PLL) i~muszą spełniać wymagania
     dotyczące przyłączania do sieci rozdzielczej, m.in.~normy
-    EN~50549-1~\cite{en50549,teodorescu2011,kjaer2005}.
+    EN~50549-1~\cite[s.~252--253]{mohan2012}, \cite[s.~16--17]{instrukcja},
+    \cite{en50549}.
   \item \textbf{Zasilacze bezprzerwowe (UPS).} W~zasilaczach typu on-line
     (z~podwójnym przetwarzaniem) falownik zasilany z~obwodu pośredniczącego
     lub z~baterii akumulatorów wytwarza sinusoidalne napięcie wyjściowe
     o~małej zawartości harmonicznych, niezależne od zakłóceń w~sieci
-    zasilającej~\cite{iec62040,rashid2014}.
+    zasilającej~\cite[s.~184--185, 256]{mohan2012}, \cite{iec62040}.
   \item \textbf{Napędy elektryczne.} Falowniki jednofazowe stosuje się do
     zasilania silników małej mocy, np.~w~sprzęcie AGD, pompach
     i~wentylatorach, natomiast w~napędach większej mocy dominują falowniki
     trójfazowe, których gałęzie działają na tej samej zasadzie co gałęzie
-    mostka~H~\cite{bose2002}.
+    mostka~H~\cite[s.~172--184]{mohan2012}, \cite[s.~3]{instrukcja}.
   \item \textbf{Nagrzewanie indukcyjne.} Falowniki rezonansowe pracujące
     z~częstotliwościami od kilku do kilkuset kiloherców zasilają wzbudniki
     w~urządzeniach do hartowania, topienia metali oraz w~kuchenkach
-    indukcyjnych~\cite{lucia2014}.
+    indukcyjnych~\cite[s.~169]{mohan2012}, \cite{lucia2014}.
   \item \textbf{Przetwornice DC/DC z~izolacją galwaniczną.} Mostek~H stanowi
     stopień pierwotny przetwornic pełnomostkowych i~przetwornic typu DAB
     (ang.~\textit{Dual Active Bridge}), w~których wytwarza napięcie
     przemienne wysokiej częstotliwości zasilające transformator. Układy
     takie stosuje się m.in.~w~zasilaczach impulsowych dużej mocy,
     ładowarkach pojazdów elektrycznych i~spawarkach
-    inwertorowych~\cite{mohan2003}.
+    inwertorowych~\cite[s.~148--152]{mohan2012}, \cite[s.~15--17]{instrukcja}.
   \item \textbf{Kompensacja i~poprawa jakości energii.} Falowniki napięcia
-    są podstawowym elementem energetycznych filtrów aktywnych
-    i~kompensatorów mocy biernej, w~których wytwarzają prąd kompensujący
-    harmoniczne lub składową bierną prądu odbiornika~\cite{kazmierkowski2002}.
+    są podstawowym elementem kompensatorów mocy biernej (STATCOM) oraz
+    szeregowych stabilizatorów napięcia (DVR), w~których wytwarzają prąd
+    kompensujący składową bierną prądu odbiornika lub napięcie kompensujące
+    zapady i~wzrosty napięcia sieci~\cite[s.~185, 256, 259]{mohan2012}.
 \end{itemize}
 
 Wspólną cechą przedstawionych zastosowań jest to, że niezależnie od mocy
