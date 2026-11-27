@@ -11,8 +11,10 @@ Język pracy i komunikacji: **polski**, z pełną terminologią techniczną.
 
 ## 1. Sposób pracy (workflow)
 
-- **Agent (Claude) edytuje pliki, robi commity i pushe** do gałęzi `main`
-  na GitHubie.
+- **Agent (Claude) edytuje pliki i robi commity lokalnie. Push do `main`
+  na GitHubie tylko na polecenie autora „github”** (ustalone 2026-11-27,
+  żeby uniknąć konfliktów z edycjami w Overleafie). Przed pushem zawsze
+  `git pull --rebase`.
 - **Autor tylko pobiera zmiany (pull) w Overleafie** (synchronizacja
   Overleaf ↔ GitHub) i tam czyta oraz kompiluje pracę.
 - Przed każdym pushem agent:
