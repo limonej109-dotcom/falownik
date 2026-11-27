@@ -177,7 +177,7 @@ z autorem, czy nadal są aktualne.
 
 - `Config/Bibliography.bib`, wpis `instrukcja`: uzupełnić autorów i rok
   instrukcji „Falowniki jednofazowe – zajęcia symulacyjne” (AGH, KEiASPE).
-- Pozycje `barlik1998`, `rashid2014`, `bose2002`, `kjaer2005`,
+- Pozycje `barlik1998`, `rashid2014`, `bose2002`, `kjaer2005`, `murai1987`,
   `kazmierkowski2002` są w `Bibliography.bib`, ale od 2026-11-27 nie są cytowane
   (zastąpione źródłami autora z numerami stron).
 - Rozdział 2: numery podrozdziałów `mohan2003` (8-2-1, 8-3-x, 8-6; 8-5 już zamieniony na s. 237–239) zamienić
