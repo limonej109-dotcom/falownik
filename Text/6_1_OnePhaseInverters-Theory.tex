@@ -101,9 +101,8 @@ wszystkich czterech ćwiartkach płaszczyzny $(u_\mathrm{o}, i_\mathrm{o})$.
 W~przedziałach czasu, w~których znaki napięcia $u_\mathrm{o}$ i~prądu
 $i_\mathrm{o}$ są przeciwne, moc chwilowa jest ujemna i~energia zgromadzona
 w~indukcyjności obciążenia zwracana jest przez diody zwrotne do obwodu
-pośredniczącego. Jeżeli źródło zasilające nie przyjmuje energii (np.~prostownik
-diodowy lub zasilacz laboratoryjny), zwrócona energia doładowuje kondensator
-$C_\mathrm{DC}$, co powoduje wzrost napięcia obwodu pośredniczącego. Zjawisko
+prądu stałego. Jeżeli źródło zasilające nie przyjmuje energii, zwrócona energia doładowuje kondensator
+$C_\mathrm{DC}$, co powoduje wzrost napięcia obwodu prądu stałego. Zjawisko
 to należy uwzględnić przy doborze pojemności i~napięcia znamionowego
 kondensatorów oraz przy projektowaniu zabezpieczeń
 nadnapięciowych~\cite[s.~200--203]{mohan2003}.
@@ -113,7 +112,7 @@ nadnapięciowych~\cite[s.~200--203]{mohan2003}.
 Rzeczywiste łączniki wymagają skończonego czasu na załączenie i~wyłączenie.
 Gdyby sygnały sterujące łącznikami jednej gałęzi były idealnie komplementarne,
 przy każdej komutacji występowałby krótki przedział, w~którym przewodzą oba
-tranzystory. Powoduje to zwarcie obwodu pośredniczącego przez gałąź
+tranzystory. Powoduje to zwarcie obwodu prądu stałego przez gałąź
 (ang.~\textit{shoot-through}) i~przepływ prądu ograniczonego jedynie
 rezystancjami pasożytniczymi, co prowadzi do wzrostu strat lub uszkodzenia
 łączników. Aby temu zapobiec, każde zbocze narastające sygnału sterującego
@@ -124,7 +123,7 @@ W~czasie martwym potencjał węzła wyjściowego wyznacza kierunek prądu
 obciążenia, ponieważ prąd przejmuje jedna z~diod zwrotnych. W~efekcie
 rzeczywiste napięcie gałęzi różni się od napięcia zadanego. Dla falownika
 mostkowego wartość średnia błędu napięcia wyjściowego w~okresie łączeń
-wynosi w~przybliżeniu~\cite{murai1987}, \cite[s.~237--238]{mohan2003}:
+wynosi w~przybliżeniu~\cite[s.~237--238]{mohan2003}:
 \begin{equation}
   \Delta \bar{u}_\mathrm{o} \approx -2\, t_\mathrm{d}\, f_\mathrm{s}\,
   U_\mathrm{DC}\, \operatorname{sgn}(i_\mathrm{o}),
