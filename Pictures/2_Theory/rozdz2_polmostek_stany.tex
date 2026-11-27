@@ -1,62 +1,104 @@
 % Stany pracy falownika polmostkowego - drogi przeplywu pradu obciazenia.
 % Wstawiany wewnatrz srodowiska figure; podpis i etykieta w pliku rozdzialu.
-% #1 - zamknieta droga pradu, podana zgodnie z rzeczywistym kierunkiem pradu
-% #2 - nazwa przewodzacego elementu (wyrozniona kolorem)
-% #3 - strzalki kierunku pradu: lista x/y/kat (kat w stopniach)
-\providecommand{\polmostekstan}[3]{%
-\begin{circuitikz}[european, scale=0.8, transform shape, font=\normalsize,
-    sciezka/.style={draw=red!25, line width=7pt, line join=round}]
-  \useasboundingbox (-1.3,-0.35) rectangle (7.0,6.35);
-  % droga pradu (pod schematem)
-  \path[sciezka] #1;
-  % schemat polmostka
-  \draw (0,0) to[V, l=$U_\mathrm{DC}$, invert] (0,6);
-  \draw (0,6) -- (6.2,6);
-  \draw (0,0) -- (6.2,0);
-  \node[nmos, anchor=D] (Q1) at (2.2,6) {};
-  \node[nmos, anchor=S] (Q2) at (2.2,0) {};
-  \draw (Q1.S) -- (Q2.D);
-  \node[left] at (Q1.G) {$Q_1$};
-  \node[left] at (Q2.G) {$Q_2$};
-  \draw (3.1,3) to[D*, l_=$D_1$, *-*] (3.1,6);
-  \draw (3.1,0) to[D*, l_=$D_2$, *-*] (3.1,3);
-  \draw (2.2,3) node[circ]{} -- (3.1,3);
-  \node[below left] at (2.2,3) {a};
-  \draw (6.2,6) to[C, l=$C_1$, *-] (6.2,3) to[C, l=$C_2$, -*] (6.2,0);
-  \draw (6.2,3) node[circ]{} node[right]{0};
-  \draw (3.1,3) to[generic, l=$Z_\mathrm{o}$] (6.2,3);
-  % element przewodzacy
-  \node[draw=red!80!black, very thick, rounded corners=2pt, fill=white,
-        text=red!80!black, inner sep=2pt, font=\normalsize\bfseries]
-        at (4.65,5.2) {#2};
-  % strzalki kierunku pradu (nad schematem)
-  \foreach \x/\y/\a in {#3}
-    \draw[red!80!black, line width=1.3pt, -{Latex[length=3.4mm, width=2.8mm]}]
-      ([shift={(\a:-0.32)}]\x,\y) -- ([shift={(\a:0.32)}]\x,\y);
-\end{circuitikz}}%
+% \polmostekstan{n}: n = 1 (Q1, io>0), 2 (D2, io>0), 3 (Q2, io<0), 4 (D1, io<0)
+\definecolor{stanakt}{RGB}{196,30,58}   % element/przewod przewodzacy
+\definecolor{stannie}{gray}{0.62}       % elementy nieaktywne
+\providecommand{\polmostekstan}[1]{%
+  \def\cQa{stannie}\def\cQb{stannie}\def\cDa{stannie}\def\cDb{stannie}%
+  \def\cCa{stannie}\def\cCb{stannie}%
+  \def\cTop{stannie}\def\cTopL{stannie}\def\cBot{stannie}\def\cBotL{stannie}%
+  \def\cLegA{stannie}\def\cLegB{stannie}\def\cNode{stannie}%
+  \ifcase#1\or
+    \def\cQa{stanakt}\def\cCa{stanakt}\def\cTop{stanakt}\def\cTopL{stanakt}%
+    \def\cLegA{stanakt}\def\cNode{stanakt}\def\uo{+U_\mathrm{DC}/2}%
+  \or
+    \def\cDb{stanakt}\def\cCb{stanakt}\def\cBot{stanakt}\def\uo{-U_\mathrm{DC}/2}%
+  \or
+    \def\cQb{stanakt}\def\cCb{stanakt}\def\cBot{stanakt}\def\cBotL{stanakt}%
+    \def\cLegB{stanakt}\def\cNode{stanakt}\def\uo{-U_\mathrm{DC}/2}%
+  \or
+    \def\cDa{stanakt}\def\cCa{stanakt}\def\cTop{stanakt}\def\uo{+U_\mathrm{DC}/2}%
+  \fi
+  \begin{circuitikz}[european, scale=0.8, transform shape, font=\normalsize,
+      prad/.style={stanakt, line width=1.4pt, -{Latex[length=3.2mm, width=2.6mm]}}]
+    \useasboundingbox (-1.25,-0.6) rectangle (7.35,6.45);
+    % zrodlo i szyny
+    \draw[stannie] (0,0) to[V, l=$U_\mathrm{DC}$, invert] (0,6);
+    \draw[stannie] (0,6) -- (2.2,6);
+    \draw[stannie] (0,0) -- (2.2,0);
+    \draw[\cTopL, line width=1.2pt] (2.2,6) -- (3.2,6);
+    \draw[\cTop,  line width=1.2pt] (3.2,6) -- (6.4,6);
+    \draw[\cBotL, line width=1.2pt] (2.2,0) -- (3.2,0);
+    \draw[\cBot,  line width=1.2pt] (3.2,0) -- (6.4,0);
+    % tranzystory
+    \node[nmos, anchor=D, color=\cQa] (Q1) at (2.2,6) {};
+    \node[nmos, anchor=S, color=\cQb] (Q2) at (2.2,0) {};
+    \node[left, text=\cQa] at (Q1.G) {$Q_1$};
+    \node[left, text=\cQb] at (Q2.G) {$Q_2$};
+    \draw[\cLegA, line width=1.2pt] (Q1.S) -- (2.2,3);
+    \draw[\cLegB, line width=1.2pt] (2.2,3) -- (Q2.D);
+    \draw[\cNode, line width=1.2pt] (2.2,3) -- (3.2,3);
+    % diody zwrotne
+    \draw[\cDa, line width=1.2pt] (3.2,3) to[D*, l_=$D_1$, color=\cDa] (3.2,6);
+    \draw[\cDb, line width=1.2pt] (3.2,0) to[D*, l_=$D_2$, color=\cDb] (3.2,3);
+    % obciazenie i dzielnik pojemnosciowy
+    \draw[stanakt, line width=1.2pt] (3.2,3) to[generic, l=$Z_\mathrm{o}$, color=stanakt] (6.4,3);
+    \draw[\cCa, line width=1.2pt] (6.4,6) to[C, l=$C_1$, color=\cCa] (6.4,3);
+    \draw[\cCb, line width=1.2pt] (6.4,3) to[C, l=$C_2$, color=\cCb] (6.4,0);
+    % wezly
+    \foreach \p in {(2.2,3),(3.2,3),(6.4,3),(3.2,6),(6.4,6),(3.2,0),(6.4,0)}
+      \fill \p circle (1.6pt);
+    \node[below left] at (2.2,3) {a};
+    \node[right] at (6.4,3) {0};
+    % napiecie wyjsciowe
+    \draw[-{Latex[length=2mm]}, black!70] (6.05,2.4) -- (4.0,2.4);
+    \node[below, font=\small] at (5.05,2.4) {$u_\mathrm{o} = \uo$};
+    % kierunek pradu
+    \ifcase#1\or
+      \draw[prad] (2.2,4.0) -- ++(0,-0.6);
+      \draw[prad] (6.4,3.6) -- ++(0,0.6);
+      \draw[prad] (4.9,6)   -- ++(-0.6,0);
+      \draw[prad] (3.5,3) -- ++(0.45,0);
+      \node[above, text=stanakt] at (3.72,3.02) {$i_\mathrm{o}$};
+    \or
+      \draw[prad] (3.2,2.0) -- ++(0,0.6);
+      \draw[prad] (6.4,2.6) -- ++(0,-0.6);
+      \draw[prad] (5.1,0)   -- ++(-0.6,0);
+      \draw[prad] (3.5,3) -- ++(0.45,0);
+      \node[above, text=stanakt] at (3.72,3.02) {$i_\mathrm{o}$};
+    \or
+      \draw[prad] (2.2,2.6) -- ++(0,-0.6);
+      \draw[prad] (6.4,0.4) -- ++(0,0.6);
+      \draw[prad] (4.3,0)   -- ++(0.6,0);
+      \draw[prad] (6.1,3) -- ++(-0.45,0);
+      \node[above, text=stanakt] at (5.88,3.02) {$i_\mathrm{o}$};
+    \or
+      \draw[prad] (3.2,3.4) -- ++(0,0.6);
+      \draw[prad] (6.4,5.4) -- ++(0,-0.6);
+      \draw[prad] (4.3,6)   -- ++(0.6,0);
+      \draw[prad] (6.1,3) -- ++(-0.45,0);
+      \node[above, text=stanakt] at (5.88,3.02) {$i_\mathrm{o}$};
+    \fi
+  \end{circuitikz}}%
 \begin{subfigure}[b]{0.48\textwidth}
   \centering
-  \polmostekstan{(2.2,6) -- (2.2,3) -- (6.2,3) -- (6.2,6) -- cycle}{$Q_1$}{2.2/3.6/-90, 3.5/3/0, 6.2/3.6/90, 4.2/6/180}
-  \caption{$i_\mathrm{o} > 0$, przewodzi $Q_1$,
-    $u_\mathrm{o} = +U_\mathrm{DC}/2$}
+  \polmostekstan{1}
+  \caption{$i_\mathrm{o} > 0$, przewodzi tranzystor $Q_1$}
 \end{subfigure}\hfill
 \begin{subfigure}[b]{0.48\textwidth}
   \centering
-  \polmostekstan{(3.1,0) -- (3.1,3) -- (6.2,3) -- (6.2,0) -- cycle}{$D_2$}{3.1/2.55/90, 3.5/3/0, 6.2/2.45/-90, 4.6/0/180}
-  \caption{$i_\mathrm{o} > 0$, przewodzi $D_2$,
-    $u_\mathrm{o} = -U_\mathrm{DC}/2$}
+  \polmostekstan{2}
+  \caption{$i_\mathrm{o} > 0$, przewodzi dioda zwrotna $D_2$}
 \end{subfigure}
 
 \vspace{5mm}
 \begin{subfigure}[b]{0.48\textwidth}
   \centering
-  \polmostekstan{(6.2,3) -- (2.2,3) -- (2.2,0) -- (6.2,0) -- cycle}{$Q_2$}{5.8/3/180, 2.2/2.4/-90, 4.2/0/0, 6.2/0.6/90}
-  \caption{$i_\mathrm{o} < 0$, przewodzi $Q_2$,
-    $u_\mathrm{o} = -U_\mathrm{DC}/2$}
+  \polmostekstan{3}
+  \caption{$i_\mathrm{o} < 0$, przewodzi tranzystor $Q_2$}
 \end{subfigure}\hfill
 \begin{subfigure}[b]{0.48\textwidth}
   \centering
-  \polmostekstan{(6.2,3) -- (3.1,3) -- (3.1,6) -- (6.2,6) -- cycle}{$D_1$}{5.8/3/180, 3.1/3.45/90, 4.6/6/0, 6.2/5.45/-90}
-  \caption{$i_\mathrm{o} < 0$, przewodzi $D_1$,
-    $u_\mathrm{o} = +U_\mathrm{DC}/2$}
+  \polmostekstan{4}
+  \caption{$i_\mathrm{o} < 0$, przewodzi dioda zwrotna $D_1$}
 \end{subfigure}
