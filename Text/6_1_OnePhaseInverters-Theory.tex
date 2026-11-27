@@ -89,11 +89,23 @@ i~współczynniku wypełnienia $D_\mathrm{a}$ średnie napięcie gałęzi w~okre
   \qquad D_\mathrm{a} \in [0, 1].
   \label{eq:uaN-sr}
 \end{equation}
-Gdy $D_\mathrm{a}$ zmienia się wolno w~porównaniu z~okresem łączeń
-($f_1 \ll f_\mathrm{s}$, gdzie $f_1$ to częstotliwość podstawowa napięcia
-wyjściowego), gałąź działa dla składowych wolnozmiennych jak sterowane źródło
-napięcia~\cite[s.~191--192, 200]{mohan2012}. Na tym opierają się metody PWM opisane
-w~podrozdziale~\ref{sec: Metody modulacji PWM}.
+Współczynnik wypełnienia nie musi być stały. W~modulatorze wyznacza się go
+w~każdym okresie łączeń przez porównanie napięcia sterującego z~przebiegiem
+trójkątnym, przy czym $D_\mathrm{a}$ jest proporcjonalny do chwilowej wartości
+napięcia sterującego~\cite[s.~191--192]{mohan2012}. Jeżeli napięcie sterujące
+jest sinusoidą o~częstotliwości $f_1$, współczynnik wypełnienia również zmienia
+się sinusoidalnie: impulsy są najszersze w~pobliżu szczytu sinusoidy
+i~najwęższe w~pobliżu jej przejścia przez zero~\cite[s.~10, 14]{instrukcja}.
+Częstotliwość łączeń $f_\mathrm{s}$ musi być przy tym znacznie większa od
+częstotliwości składowej podstawowej napięcia wyjściowego $f_1$
+($f_1 \ll f_\mathrm{s}$, zwykle o~dwa--trzy rzędy wielkości). Wówczas
+w~czasie jednego okresu łączeń $D_\mathrm{a}$ można uznać za stały, a~wartość
+średnia napięcia gałęzi w~kolejnych okresach łączeń odtwarza przebieg
+$D_\mathrm{a}(t)\,U_\mathrm{DC}$~\cite[s.~200]{mohan2012}. Składowe
+o~częstotliwości łączeń i~jej wielokrotnościach usuwa filtr
+wyjściowy~\cite[s.~193]{mohan2012}, dlatego gałąź można traktować jako źródło
+napięcia sterowane współczynnikiem wypełnienia. Na tej zasadzie opierają się
+metody PWM opisane w~podrozdziale~\ref{sec: Metody modulacji PWM}.
 
 \subsubsection*{Kierunek przepływu energii}
 
