@@ -178,7 +178,7 @@ z autorem, czy nadal są aktualne.
 - Pozycje `barlik1998`, `rashid2014`, `bose2002`, `kjaer2005`,
   `kazmierkowski2002` są w `Bibliography.bib`, ale od 2026-11-27 nie są cytowane
   (zastąpione źródłami autora z numerami stron).
-- Rozdział 2: numery podrozdziałów `mohan2003` (8-2-1, 8-3-x, 8-5, 8-6) zamienić
+- Rozdział 2: numery podrozdziałów `mohan2003` (8-2-1, 8-3-x, 8-6; 8-5 już zamieniony na s. 237–239) zamienić
   na numery stron po sprawdzeniu w książce przez autora.
 - Rozdział 2, akapit końcowy podrozdziału 2.4: sprawdzić, czy opis
   możliwości stanowiska zgadza się z rozdziałem 3.
