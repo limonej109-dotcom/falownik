@@ -7,6 +7,50 @@
 \section{Dobór sterowników bramkowych}
 \label{sec: Dobór sterowników bramkowych}
 
+Jak wskazano w~podrozdziale~\ref{sec: Topologie jednofazowych falowników},
+tranzystory górne mostka~H wymagają sterowników o~pływającym potencjale
+odniesienia. Potencjał węzłów wyjściowych zmienia się przy każdym przełączeniu
+między potencjałami biegunów N~i~P z~szybkością narastania rzędu kilku do
+kilkudziesięciu woltów na nanosekundę. Aby załączyć tranzystor górny,
+napięcie jego bramki musi być o~$U_\mathrm{GS(on)}$ wyższe od potencjału węzła
+wyjściowego, czyli względem bieguna N wynosić nawet
+$U_\mathrm{DC} + U_\mathrm{GS(on)}$. Wynikają z~tego trzy wymagania wobec
+toru sterowania bramkowego:
+\begin{itemize}
+  \item \textbf{Zasilanie odniesione do źródła tranzystora.} Napięcie
+    zasilające sterownik musi być podane względem źródła tranzystora górnego,
+    a~nie względem masy układu~\cite[s.~29, 142]{mohan2012}. Stosuje się
+    w~tym celu układ bootstrap albo izolowaną przetwornicę DC/DC
+    z~transformatorem~\cite[s.~15]{instrukcja}, \cite[rozdz.~5, 7]{balogh2018}.
+  \item \textbf{Przeniesienie sygnału sterującego.} Sygnał PWM z~mikrokontrolera,
+    odniesiony do masy układu sterowania, trzeba przenieść do sterownika
+    o~pływającym potencjale -- przez układ przesuwania poziomu
+    (ang.~\textit{level shifter}) albo przez izolację galwaniczną (izolator
+    cyfrowy, transoptor)~\cite[s.~29]{mohan2012}, \cite[rozdz.~5]{balogh2018}.
+  \item \textbf{Odporność na szybkie zmiany potencjału.} Pojemności
+    pasożytnicze między stroną pływającą a~masą układu sterowania (pojemność
+    międzyuzwojeniowa transformatora przetwornicy, pojemność bariery
+    izolatora) przewodzą przy każdym przełączeniu prąd
+    $i = C\,\mathrm{d}u/\mathrm{d}t$. Przy pojemności \SI{10}{\pico\farad}
+    i~szybkości narastania \SI{50}{\volt\per\nano\second} jest to impuls
+    prądu o~wartości \SI{0,5}{\ampere}, który może zakłócić pracę sterownika
+    lub mikrokontrolera. Elementy izolujące powinny więc mieć możliwie małą
+    pojemność sprzęgającą.
+\end{itemize}
+
+Układ bootstrap jest prosty i~tani: kondensator zasilający sterownik górny
+ładuje się przez diodę z~zasilania strony dolnej w~czasie, gdy przewodzi
+tranzystor dolny tej samej gałęzi. Z~tego powodu nie pozwala on na długotrwałe
+załączenie tranzystora górnego (współczynnik wypełnienia bliski 1), a~uzyskanie
+ujemnego napięcia wyłączającego wymaga dodatkowych elementów~\cite[rozdz.~5]{balogh2018}.
+Izolowane zasilanie każdego kanału jest droższe i~zajmuje więcej miejsca, ale
+umożliwia pracę z~dowolnym współczynnikiem wypełnienia (również stałe
+załączenie łącznika) oraz stosowanie ujemnego napięcia wyłączającego bramkę,
+co zwiększa odporność na pasożytnicze załączenie tranzystora. Z~tych powodów
+w~projektowanym stanowisku zastosowano izolowane zasilanie każdego z~czterech
+kanałów sterowania bramkowego.
+
+
 \section{Dobór kondensatorów magistrali DC}
 \label{sec: Dobór kondensatorów magistrali DC}
 
