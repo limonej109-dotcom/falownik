@@ -241,25 +241,23 @@ wyjściowe jest różnicą napięć gałęzi~\cite[s.~194]{mohan2012}:
 
 Dopuszczalne stany łączników mostka zestawiono w~tabeli~\ref{tab:stany-mostka}.
 Napięcie wyjściowe może przyjmować trzy wartości: $+U_\mathrm{DC}$, $0$
-oraz $-U_\mathrm{DC}$. Stan zerowy można uzyskać na dwa sposoby. Poprzez 
-załączenie obu łączników górnych lub obu łączników dolnych. Prąd obciążenia
-krąży wówczas w~obwodzie zamkniętym przez jeden tranzystor i~jedną diodę
-(lub dwa tranzystory). Możliwość
-wytworzenia stanu zerowego jest wykorzystywana w~modulacji unipolarnej
-opisanej w~podrozdziale~\ref{sec: Metody modulacji PWM}~\cite[s.~5]{instrukcja}.
+oraz $-U_\mathrm{DC}$~\cite[s.~5]{instrukcja}. Drogi przepływu prądu
+obciążenia w~poszczególnych stanach pokazano na rys.~\ref{fig:mostek-stany}.
 
-Drogi przepływu prądu obciążenia w~stanach pracy mostka pokazano na
-rys.~\ref{fig:mostek-stany}. W~stanach aktywnych przewodzą łączniki leżące
-na przekątnej mostka: tranzystory $Q_1$ i~$Q_4$ albo $Q_2$ i~$Q_3$
-(rys.~\ref{fig:mostek-stany}a i~\ref{fig:mostek-stany}b), a~energia płynie
-z~obwodu prądu stałego do obciążenia. Po wyłączeniu tranzystorów
-indukcyjność obciążenia podtrzymuje prąd, który zamyka się przez diody
-zwrotne leżące na drugiej przekątnej (rys.~\ref{fig:mostek-stany}c
-i~\ref{fig:mostek-stany}d). Napięcie wyjściowe zmienia wtedy znak, a~energia
-zgromadzona w~obciążeniu wraca do kondensatora $C_\mathrm{DC}$. W~stanach
-zerowych (rys.~\ref{fig:mostek-stany}e i~\ref{fig:mostek-stany}f) prąd krąży
-przez jeden tranzystor i~jedną diodę, a~obwód prądu stałego nie bierze
-udziału w~przepływie energii~\cite[s.~5]{instrukcja}.
+W~stanach aktywnych przewodzą łączniki leżące na przekątnej mostka:
+tranzystory $Q_1$ i~$Q_4$ albo $Q_2$ i~$Q_3$ (rys.~\ref{fig:mostek-stany}a
+i~\ref{fig:mostek-stany}b), a~energia płynie z~obwodu prądu stałego do
+obciążenia. Po wyłączeniu tranzystorów indukcyjność obciążenia podtrzymuje
+prąd, który zamyka się przez diody zwrotne leżące na drugiej przekątnej
+(rys.~\ref{fig:mostek-stany}c i~\ref{fig:mostek-stany}d). Napięcie wyjściowe
+zmienia wtedy znak, a~energia zgromadzona w~obciążeniu wraca do kondensatora
+$C_\mathrm{DC}$.
+
+Stan zerowy uzyskuje się przez załączenie obu łączników górnych albo obu
+dolnych. Prąd obciążenia krąży wtedy przez jeden tranzystor i~jedną diodę
+(rys.~\ref{fig:mostek-stany}e i~\ref{fig:mostek-stany}f), bez udziału obwodu
+prądu stałego. Stan ten jest wykorzystywany w~modulacji unipolarnej opisanej
+w~podrozdziale~\ref{sec: Metody modulacji PWM}.
 
 \begin{figure}[p]
   \centering
