@@ -298,23 +298,59 @@ napięciem:
   \label{eq:mostek-harm}
 \end{equation}
 Przy tym samym napięciu blokowania łączników, równym $U_\mathrm{DC}$,
-falownik mostkowy dostarcza zatem dwukrotnie większego napięcia
-wyjściowego, a~przy tej samej mocy wyjściowej -- dwukrotnie mniejszego
-prądu niż układ półmostkowy. Ceną za to jest podwojenie liczby łączników
-i~układów sterowania bramkowego~\cite[s.~5, 7--8]{instrukcja},
-\cite[podrozdz.~8-3-2]{mohan2003}.
+falownik mostkowy dostarcza zatem dwukrotnie większe napięcie wyjściowe,
+a~przy tej samej mocy wyjściowej pobiera dwukrotnie mniejszy prąd niż układ
+półmostkowy~\cite[s.~5, 7--8]{instrukcja}, \cite[podrozdz.~8-3-2]{mohan2003}.
 
-Istotną cechą konstrukcyjną mostka~H jest to, że źródła tranzystorów
-górnych $Q_1$ i~$Q_3$ dołączone są do węzłów wyjściowych a~i~b, których
-potencjał zmienia się skokowo między potencjałami biegunów N~i~P z~szybkością
-narastania rzędu kilku do kilkudziesięciu woltów na nanosekundę. Sterowanie
-tych tranzystorów wymaga zatem układów sterowania bramkowego o~pływającym
-potencjale odniesienia -- zasilanych metodą bootstrap albo z~izolowanych
-przetwornic DC/DC~\cite[s.~15]{instrukcja}. Rozwiązanie z~izolowanym zasilaniem każdego kanału
-umożliwia pracę z~dowolnym współczynnikiem wypełnienia (również stałym
-załączeniem łącznika) oraz stosowanie ujemnego napięcia wyłączającego
-bramkę, co zwiększa odporność na pasożytnicze załączenie tranzystora.
-Zagadnienie to rozwinięto w~podrozdziale~\ref{sec: Dobór sterowników bramkowych}.
+\subsubsection*{Sterowanie tranzystorów górnych}
+
+Tranzystor MOSFET załącza się napięciem bramka--źródło $u_\mathrm{GS}$,
+a~nie potencjałem bramki względem masy układu. Źródła tranzystorów dolnych
+$Q_2$ i~$Q_4$ są dołączone do bieguna N, czyli do stałego potencjału, który
+może być wspólny z~masą układu sterowania. Źródła tranzystorów górnych $Q_1$
+i~$Q_3$ są natomiast dołączone do węzłów wyjściowych a~i~b, których potencjał
+przy każdym przełączeniu zmienia się skokowo między potencjałami biegunów
+N~i~P, z~szybkością narastania rzędu kilku do kilkudziesięciu woltów na
+nanosekundę. Aby załączyć tranzystor górny, napięcie jego bramki musi być
+o~$U_\mathrm{GS(on)}$ wyższe od potencjału węzła wyjściowego, czyli względem
+bieguna N wynosić nawet $U_\mathrm{DC} + U_\mathrm{GS(on)}$. Masa układu
+sterowania bramkowego tranzystora górnego musi więc być dołączona do jego
+źródła i~zmieniać potencjał razem z~węzłem wyjściowym -- mówi się wtedy
+o~sterowniku o~pływającym potencjale odniesienia (ang.~\textit{floating gate
+driver})~\cite[s.~29]{mohan2012}. Wynikają z~tego trzy wymagania:
+\begin{itemize}
+  \item \textbf{Zasilanie odniesione do źródła tranzystora.} Napięcie
+    zasilające sterownik musi być podane względem źródła tranzystora górnego,
+    a~nie względem masy układu~\cite[s.~29, 142]{mohan2012}. Stosuje się
+    w~tym celu układ bootstrap albo izolowaną przetwornicę DC/DC
+    z~transformatorem~\cite[s.~15]{instrukcja}, \cite[rozdz.~5, 7]{balogh2018}.
+  \item \textbf{Przeniesienie sygnału sterującego.} Sygnał PWM z~mikrokontrolera,
+    odniesiony do masy układu sterowania, trzeba przenieść do sterownika
+    o~pływającym potencjale -- przez układ przesuwania poziomu
+    (ang.~\textit{level shifter}) albo przez izolację galwaniczną (izolator
+    cyfrowy, transoptor)~\cite[s.~29]{mohan2012}, \cite[rozdz.~5]{balogh2018}.
+  \item \textbf{Odporność na szybkie zmiany potencjału.} Pojemności
+    pasożytnicze między stroną pływającą a~masą układu sterowania (pojemność
+    międzyuzwojeniowa transformatora przetwornicy, pojemność bariery
+    izolatora) przewodzą przy każdym przełączeniu prąd
+    $i = C\,\mathrm{d}u/\mathrm{d}t$. Przy pojemności \SI{10}{\pico\farad}
+    i~szybkości narastania \SI{50}{\volt\per\nano\second} jest to impuls
+    prądu o~wartości \SI{0,5}{\ampere}, który może zakłócić pracę sterownika
+    lub mikrokontrolera. Elementy izolujące powinny więc mieć możliwie małą
+    pojemność sprzęgającą.
+\end{itemize}
+
+Układ bootstrap jest prosty i~tani: kondensator zasilający sterownik górny
+ładuje się przez diodę z~zasilania strony dolnej w~czasie, gdy przewodzi
+tranzystor dolny tej samej gałęzi. Z~tego powodu nie pozwala on na długotrwałe
+załączenie tranzystora górnego (współczynnik wypełnienia bliski 1), a~uzyskanie
+ujemnego napięcia wyłączającego wymaga dodatkowych elementów~\cite[rozdz.~5]{balogh2018}.
+Izolowane zasilanie każdego kanału jest droższe i~zajmuje więcej miejsca, ale
+umożliwia pracę z~dowolnym współczynnikiem wypełnienia (również stałe
+załączenie łącznika) oraz stosowanie ujemnego napięcia wyłączającego bramkę,
+co zwiększa odporność na pasożytnicze załączenie tranzystora. Takie
+rozwiązanie przyjęto w~projektowanym stanowisku; zagadnienie rozwinięto
+w~podrozdziale~\ref{sec: Dobór sterowników bramkowych}.
 
 \subsubsection*{Inne topologie}
 
