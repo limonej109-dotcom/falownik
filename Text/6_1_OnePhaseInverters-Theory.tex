@@ -351,20 +351,19 @@ przesunięte w~zakres częstotliwości, w~którym można je łatwo odfiltrować.
 W~podrozdziale omówiono cztery metody sterowania jednofazowych falowników
 napięcia: metodę półokresową, metodę modulacji szerokości pojedynczego impulsu
 w~półokresie oraz dwie odmiany komparacyjnej metody sinusoidalnej modulacji
-szerokości impulsów: dwubiegunową oraz jednobiegunową~\cite[s.~5--12]{instrukcja}.
-W~dwóch pierwszych metodach łączniki przełączane są z~częstotliwością
-podstawową napięcia wyjściowego $f_1$. W~modulacji szerokości impulsów
-(ang.~\textit{Pulse Width Modulation}, PWM) łączniki przełączane są natomiast
-z~częstotliwością $f_\mathrm{s} \gg f_1$, a~napięcie wyjściowe ma postać ciągu
-impulsów o~stałej amplitudzie i~zmiennej szerokości, którego wartość średnia
-w~każdym okresie łączeń odwzorowuje wartość chwilową przebiegu
-zadanego~\cite[s.~191--193, 200]{mohan2012}.
+szerokości impulsów -- dwubiegunową i~jednobiegunową~\cite[s.~5--12]{instrukcja}.
+Metody te różnią się częstotliwością przełączania łączników, możliwością
+regulacji napięcia wyjściowego oraz zawartością wyższych harmonicznych
+w~napięciu wyjściowym.
 
 \subsubsection*{Metoda półokresowa}
 
 W~metodzie półokresowej (ang.~\textit{square-wave operation}) łączniki
-przełączane są co pół okresu napięcia wyjściowego, a~na wyjściu falownika
-powstaje przemienny przebieg prostokątny~\cite[s.~6]{instrukcja}. W~falowniku
+sterowane są przebiegiem prostokątnym o~współczynniku wypełnienia 50\,\%,
+którego częstotliwość jest równa częstotliwości napięcia wyjściowego $f_1$.
+Każdy łącznik załącza się i~wyłącza raz w~okresie napięcia wyjściowego,
+przewodząc przez połowę tego okresu, a~na wyjściu falownika powstaje
+przemienny przebieg prostokątny~\cite[s.~6]{instrukcja}. W~falowniku
 półmostkowym łączniki $Q_1$ i~$Q_2$ przewodzą naprzemiennie, a~napięcie
 wyjściowe przyjmuje wartości $\pm U_\mathrm{DC}/2$. W~falowniku mostkowym
 naprzemiennie przewodzą pary łączników ($Q_1$, $Q_4$) oraz ($Q_2$, $Q_3$),
@@ -409,6 +408,12 @@ uniemożliwia stosowanie małych filtrów wyjściowych.
 
 \subsubsection*{Komparacyjna metoda sinusoidalnej modulacji szerokości impulsów}
 
+W~modulacji szerokości impulsów (ang.~\textit{Pulse Width Modulation}, PWM)
+łączniki przełączane są z~częstotliwością $f_\mathrm{s}$ wielokrotnie większą
+od częstotliwości napięcia wyjściowego $f_1$. Napięcie wyjściowe ma postać
+ciągu impulsów o~stałej amplitudzie i~zmiennej szerokości, którego wartość
+średnia w~każdym okresie łączeń odwzorowuje wartość chwilową przebiegu
+zadanego~\cite[s.~191--193, 200]{mohan2012}.
 W~komparacyjnej (porównawczej) sinusoidalnej modulacji PWM
 (ang.~\textit{Sinusoidal PWM}, SPWM) sygnał modulujący (referencyjny)
 $u_\mathrm{ref}$ o~częstotliwości $f_1$ porównywany jest z~sygnałem nośnym
