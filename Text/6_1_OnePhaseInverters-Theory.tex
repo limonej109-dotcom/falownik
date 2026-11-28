@@ -154,9 +154,8 @@ opóźnień i~rozrzutów w~torze sterowania bramkowego~\cite[s.~3, 8]{instrukcja
 
 Jednofazowe falowniki napięcia buduje się najczęściej w~układzie
 półmostkowym (jednogałęziowym) lub mostkowym (dwugałęziowym). W~dalszej
-części podrozdziału scharakteryzowano obie topologie, a~także krótko
-omówiono układ przeciwsobny oraz topologie wielopoziomowe
-i~transformatorowe.
+części podrozdziału scharakteryzowano obie topologie i~porównano ich
+właściwości.
 
 \subsubsection*{Falownik półmostkowy}
 
@@ -304,68 +303,42 @@ półmostkowy~\cite[s.~5, 7--8]{instrukcja}, \cite[podrozdz.~8-3-2]{mohan2003}.
 
 \subsubsection*{Sterowanie tranzystorów górnych}
 
-Tranzystor MOSFET załącza się napięciem bramka--źródło $u_\mathrm{GS}$,
-a~nie potencjałem bramki względem masy układu. Źródła tranzystorów dolnych
-$Q_2$ i~$Q_4$ są dołączone do bieguna N, czyli do stałego potencjału, który
-może być wspólny z~masą układu sterowania. Źródła tranzystorów górnych $Q_1$
-i~$Q_3$ są natomiast dołączone do węzłów wyjściowych a~i~b, których potencjał
-przy każdym przełączeniu zmienia się skokowo między potencjałami biegunów
-N~i~P. Masa układu sterowania bramkowego tranzystora górnego musi więc być
-dołączona do jego źródła i~zmieniać potencjał razem z~węzłem wyjściowym --
-mówi się wtedy o~sterowniku o~pływającym potencjale odniesienia
-(ang.~\textit{floating gate driver})~\cite[s.~29]{mohan2012}. Zasila się go
-z~układu bootstrap albo z~izolowanej przetwornicy DC/DC~\cite[s.~15]{instrukcja}.
-Problem ten nie występuje w~układzie przeciwsobnym opisanym poniżej, w~którym
-źródła obu tranzystorów mają wspólny potencjał. Sposób sterowania
+Tranzystor MOSFET w~falowniku załącza się napięciem bramka--źródło
+$u_\mathrm{GS}$. W~falowniku półmostkowym i~mostkowym źródła tranzystorów
+dolnych ($Q_2$, a~w~mostku także $Q_4$) są dołączone do bieguna N, czyli do
+stałego potencjału, który może być wspólny z~masą układu sterowania. Źródła
+tranzystorów górnych ($Q_1$, a~w~mostku także $Q_3$) są natomiast dołączone
+do węzłów wyjściowych, których potencjał przy każdym przełączeniu zmienia się
+skokowo między potencjałami biegunów N~i~P. Masa układu sterowania bramkowego
+tranzystora górnego musi więc być dołączona do jego źródła i~zmieniać
+potencjał razem z~węzłem wyjściowym -- mówi się wtedy o~sterowniku
+o~pływającym potencjale odniesienia (ang.~\textit{floating gate
+driver})~\cite[s.~29]{mohan2012}. Zasila się go z~układu bootstrap albo
+z~izolowanej przetwornicy DC/DC~\cite[s.~15]{instrukcja}. Półmostek wymaga
+jednego takiego sterownika, a~mostek~H -- dwóch. Sposób sterowania
 tranzystorów górnych w~projektowanym stanowisku omówiono
 w~podrozdziale~\ref{sec: Dobór sterowników bramkowych}.
 
-\subsubsection*{Inne topologie}
-
-Falownik przeciwsobny (ang.~\textit{push-pull}) wykorzystuje transformator
-z~odczepem środkowym uzwojenia pierwotnego i~dwa łączniki, których źródła
-dołączone są do wspólnego potencjału. Upraszcza to sterowanie, jednak
-łączniki muszą blokować napięcie $2U_\mathrm{DC}$, a~transformator pracuje
-z~częstotliwością podstawową napięcia wyjściowego lub wymaga dodatkowego
-stopnia przetwarzania~\cite[s.~152]{mohan2012}, \cite[podrozdz.~8-3-3]{mohan2003}. Układ ten stosuje się głównie przy
-niskich napięciach zasilania, np.~w~przetwornicach zasilanych z~akumulatorów.
-
-W~zastosowaniach wymagających wyższych napięć lub lepszej jakości napięcia
-wyjściowego stosuje się topologie wielopoziomowe, np.~gałęzie z~punktem
-neutralnym ograniczonym diodami (NPC) lub kaskadowe połączenie mostków~H,
-które pozwalają uzyskać większą liczbę poziomów napięcia wyjściowego
-i~zmniejszyć napięcie blokowania pojedynczego
-łącznika~\cite[s.~212]{mohan2012}. W~beztransformatorowych falownikach
-fotowoltaicznych stosuje się z~kolei modyfikacje mostka~H (np.~H5, HERIC),
-w~których dodatkowe łączniki odłączają panel od sieci w~stanach zerowych,
-ograniczając prąd upływu do ziemi przez pojemność pasożytniczą
-paneli~\cite[s.~11--15]{teodorescu2011}.
-
-Porównanie podstawowych topologii jednofazowych zestawiono
-w~tabeli~\ref{tab:porownanie-topologii}.
+Porównanie obu topologii zestawiono w~tabeli~\ref{tab:porownanie-topologii}.
 
 \begin{table}[htbp]
   \centering
-  \caption{Porównanie podstawowych topologii jednofazowych falowników napięcia}
+  \caption{Porównanie jednofazowych falowników napięcia: półmostkowego i~mostkowego}
   \label{tab:porownanie-topologii}
-  \begin{tabular}{lccc}
+  \begin{tabular}{lcc}
     \toprule
-    Parametr & Półmostek & Mostek H & Przeciwsobny \\
+    Parametr & Półmostek & Mostek H \\
     \midrule
-    Liczba łączników & 2 & 4 & 2 \\
+    Liczba łączników & 2 & 4 \\
     Poziomy napięcia $u_\mathrm{o}$ & $\pm U_\mathrm{DC}/2$
-      & $\pm U_\mathrm{DC}$, $0$ & $\pm U_\mathrm{DC}/\vartheta$ \\
+      & $\pm U_\mathrm{DC}$, $0$ \\
     $\hat U_{\mathrm{o}(1)}$ (przebieg prostokątny)
-      & $\frac{2}{\pi}U_\mathrm{DC}$ & $\frac{4}{\pi}U_\mathrm{DC}$
-      & $\frac{4}{\pi}\frac{U_\mathrm{DC}}{\vartheta}$ \\
-    Napięcie blokowania łącznika & $U_\mathrm{DC}$ & $U_\mathrm{DC}$
-      & $2U_\mathrm{DC}$ \\
-    Sterowniki o~pływającym potencjale & 1 & 2 & 0 \\
+      & $\frac{2}{\pi}U_\mathrm{DC}$ & $\frac{4}{\pi}U_\mathrm{DC}$ \\
+    Napięcie blokowania łącznika & $U_\mathrm{DC}$ & $U_\mathrm{DC}$ \\
+    Sterowniki o~pływającym potencjale & 1 & 2 \\
     \bottomrule
   \end{tabular}
-  \zrodlo{opracowanie własne na podstawie~\cite[s.~4--5]{instrukcja},
-    \cite[s.~152]{mohan2012};
-    $\vartheta$ -- przekładnia transformatora}
+  \zrodlo{opracowanie własne na podstawie~\cite[s.~4--5, 7--8]{instrukcja}}
 \end{table}
 
 % ---------------------------------------------------------------------
