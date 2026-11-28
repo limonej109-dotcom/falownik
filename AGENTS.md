@@ -110,6 +110,9 @@ szkielety z nagłówkami podrozdziałów.
   `\cite[s.~200]{mohan2003}`, przy kilku źródłach osobne `\cite[...]{...}`
   oddzielone przecinkiem. Gdy numer strony nie jest potwierdzony, podawać
   numer podrozdziału, np. `\cite[podrozdz.~8-5]{mohan2003}`.
+  Lokalizacja **nie jest drukowana w PDF** (przełącznik `\pokazstronyfalse`
+  w preambule `0_EngineeringThesis.tex`, ustalone z autorem 2026-11-28);
+  widać ją tylko w kodzie. `\pokazstronytrue` włącza ją z powrotem.
 - Preferowane źródła autora (są w projekcie): `mohan2003` (Mohan, Undeland,
   Robbins, 3. wyd. – skan bez warstwy tekstowej, strony 200–203 potwierdzone
   zrzutami ekranu autora), `mohan2012` (Mohan, *Power Electronics: A First

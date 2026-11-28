@@ -214,6 +214,17 @@
            {Ł}{{\L}}1
 }
 
+% Lokalizacja w źródle w \cite[s.~200]{klucz} służy tylko autorowi do
+% weryfikacji i nie jest drukowana w PDF. Aby ją wydrukować, zamień
+% \pokazstronyfalse na \pokazstronytrue.
+\newif\ifpokazstrony
+\pokazstronyfalse
+\AtBeginDocument{%
+  \ifpokazstrony\else
+    \let\citezlokalizacja\cite
+    \renewcommand{\cite}[2][]{\citezlokalizacja{#2}}%
+  \fi}
+
 \begin{document}
 
 \frontmatter
