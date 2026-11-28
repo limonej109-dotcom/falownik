@@ -344,45 +344,68 @@ Porównanie obu topologii zestawiono w~tabeli~\ref{tab:porownanie-topologii}.
 \section{Metody modulacji PWM}
 \label{sec: Metody modulacji PWM}
 
-Zadaniem układu modulacji jest takie wyznaczenie chwil przełączeń łączników,
+Zadaniem układu sterowania jest takie wyznaczenie chwil przełączeń łączników,
 aby składowa podstawowa napięcia wyjściowego miała zadaną amplitudę
-i~częstotliwość, a~harmoniczne wyższych rzędów były przesunięte w~zakres
-częstotliwości, w~którym można je łatwo odfiltrować. W~modulacji szerokości
-impulsów (ang.~\textit{Pulse Width Modulation}, PWM) napięcie wyjściowe ma
-postać ciągu impulsów o~stałej amplitudzie i~zmiennej szerokości, a~jego
-wartość średnia w~każdym okresie łączeń odwzorowuje wartość chwilową
-przebiegu zadanego~\cite[s.~191--193, 200]{mohan2012}.
+i~częstotliwość, a~harmoniczne wyższych rzędów były jak najmniejsze lub
+przesunięte w~zakres częstotliwości, w~którym można je łatwo odfiltrować.
+W~podrozdziale omówiono cztery metody sterowania jednofazowych falowników
+napięcia: metodę półokresową, metodę modulacji szerokości pojedynczego impulsu
+w~półokresie oraz dwie odmiany komparacyjnej metody sinusoidalnej modulacji
+szerokości impulsów -- dwubiegunową i~jednobiegunową~\cite[s.~5--12]{instrukcja}.
+W~dwóch pierwszych metodach łączniki przełączane są z~częstotliwością
+podstawową napięcia wyjściowego $f_1$. W~modulacji szerokości impulsów
+(ang.~\textit{Pulse Width Modulation}, PWM) łączniki przełączane są natomiast
+z~częstotliwością $f_\mathrm{s} \gg f_1$, a~napięcie wyjściowe ma postać ciągu
+impulsów o~stałej amplitudzie i~zmiennej szerokości, którego wartość średnia
+w~każdym okresie łączeń odwzorowuje wartość chwilową przebiegu
+zadanego~\cite[s.~191--193, 200]{mohan2012}.
 
-\subsubsection*{Sterowanie przebiegiem prostokątnym i~pojedynczym impulsem}
+\subsubsection*{Metoda półokresowa}
 
-Najprostszą metodą sterowania falownika mostkowego jest praca z~przebiegiem
-prostokątnym (ang.~\textit{square-wave operation}), w~której każda para
-łączników ($Q_1$, $Q_4$) oraz ($Q_2$, $Q_3$) przewodzi przez połowę okresu.
-Amplituda składowej podstawowej osiąga wówczas największą możliwą wartość
-$\frac{4}{\pi}U_\mathrm{DC} \approx 1{,}27\,U_\mathrm{DC}$ zgodnie
-z~zależnością~\eqref{eq:mostek-harm}, ale nie można jej regulować inaczej
-niż przez zmianę napięcia $U_\mathrm{DC}$, a~widmo zawiera harmoniczne
-niskich rzędów o~amplitudach odwrotnie proporcjonalnych do
-rzędu~\cite[s.~7--8]{instrukcja}, \cite[podrozdz.~8-2-2]{mohan2003}.
+W~metodzie półokresowej (ang.~\textit{square-wave operation}) łączniki
+przełączane są co pół okresu napięcia wyjściowego, a~na wyjściu falownika
+powstaje przemienny przebieg prostokątny~\cite[s.~6]{instrukcja}. W~falowniku
+półmostkowym łączniki $Q_1$ i~$Q_2$ przewodzą naprzemiennie, a~napięcie
+wyjściowe przyjmuje wartości $\pm U_\mathrm{DC}/2$. W~falowniku mostkowym
+naprzemiennie przewodzą pary łączników ($Q_1$, $Q_4$) oraz ($Q_2$, $Q_3$),
+a~napięcie wyjściowe przyjmuje wartości $\pm U_\mathrm{DC}$. Amplitudy
+harmonicznych opisują zależności~\eqref{eq:polmostek-harm}
+i~\eqref{eq:mostek-harm}, a~wartość skuteczna składowej podstawowej wynosi
+odpowiednio ok.~$0{,}45\,U_\mathrm{DC}$ i~$0{,}9\,U_\mathrm{DC}$~\cite[s.~6--8]{instrukcja}.
+W~falowniku mostkowym amplituda składowej podstawowej osiąga największą możliwą
+wartość $\frac{4}{\pi}U_\mathrm{DC} \approx 1{,}27\,U_\mathrm{DC}$, ale nie
+można jej regulować inaczej niż przez zmianę napięcia $U_\mathrm{DC}$,
+a~widmo zawiera harmoniczne niskich rzędów o~amplitudach odwrotnie
+proporcjonalnych do rzędu~\cite[s.~7--8]{instrukcja},
+\cite[podrozdz.~8-2-2]{mohan2003}. Metodę tę stosuje się głównie
+w~falownikach wysokiej częstotliwości współpracujących z~transformatorem,
+np.~w~izolowanych przetwornicach DC/DC~\cite[s.~15--17]{instrukcja}.
 
-Regulację amplitudy umożliwia sterowanie pojedynczym impulsem, nazywane
+\subsubsection*{Metoda modulacji szerokości pojedynczego impulsu w~półokresie}
+
+Metoda modulacji szerokości pojedynczego impulsu w~półokresie, nazywana
 również sterowaniem z~przesunięciem fazowym (ang.~\textit{phase-shift
-control}). Gałęzie a~i~b przełączane są przebiegiem prostokątnym, lecz
-przesuniętym względem siebie, dzięki czemu w~każdym półokresie występuje
-impuls napięcia o~szerokości $\delta$ oraz przedziały stanu zerowego.
-Amplituda harmonicznej rzędu $n$ wynosi~\cite[s.~8--9]{instrukcja},
-\cite[podrozdz.~8-3-2-4, wzór (8-37)]{mohan2003}:
+control}), dotyczy falownika mostkowego. Obie gałęzie przełączane są
+przebiegiem prostokątnym o~częstotliwości $f_1$, lecz sygnały sterujące
+gałęzi~b są opóźnione względem sygnałów gałęzi~a o~kąt
+$\delta$~\cite[s.~8]{instrukcja}. W~każdym półokresie występuje więc impuls
+napięcia o~szerokości $\delta$ oraz przedziały stanu zerowego, w~których
+przewodzą oba łączniki górne albo oba dolne. Amplituda harmonicznej rzędu $n$
+wynosi~\cite[s.~8--9]{instrukcja}, \cite[podrozdz.~8-3-2-4, wzór (8-37)]{mohan2003}:
 \begin{equation}
   \hat{U}_{\mathrm{o}(n)} = \frac{4}{n\pi}\, U_\mathrm{DC}
   \sin\!\left(\frac{n\delta}{2}\right), \qquad n = 1, 3, 5, \ldots
   \label{eq:pojedynczy-impuls}
 \end{equation}
 gdzie $\delta \in [0, \pi]$ jest szerokością impulsu wyrażoną w~radianach.
+Zmieniając $\delta$, można płynnie regulować napięcie wyjściowe przy stałym
+napięciu $U_\mathrm{DC}$. Dla $\delta = \pi$ (przesunięcie o~pół okresu)
+metoda przechodzi w~sterowanie półokresowe~\cite[s.~9, 18]{instrukcja}.
 Dobierając $\delta = 2\pi/3$, eliminuje się harmoniczną trzecią i~jej
 wielokrotności, jednak harmoniczne 5., 7. i~kolejne pozostają, co
 uniemożliwia stosowanie małych filtrów wyjściowych.
 
-\subsubsection*{Sinusoidalna modulacja PWM -- parametry}
+\subsubsection*{Komparacyjna metoda sinusoidalnej modulacji szerokości impulsów}
 
 W~komparacyjnej (porównawczej) sinusoidalnej modulacji PWM
 (ang.~\textit{Sinusoidal PWM}, SPWM) sygnał modulujący (referencyjny)
@@ -419,7 +442,7 @@ o~częstotliwości wyjściowej \SI{50}{\hertz} i~częstotliwości łączeń
 rzędu kilkunastu do kilkudziesięciu kiloherców warunek ten jest spełniony
 z~dużym zapasem.
 
-\subsubsection*{Modulacja bipolarna}
+\subsubsection*{Modulacja dwubiegunowa (bipolarna)}
 
 W~modulacji bipolarnej (dwubiegunowej) łączniki przełączane są parami po
 przekątnej mostka: gdy $u_\mathrm{ref} > u_\mathrm{tri}$, załączone są
@@ -471,7 +494,7 @@ wynosi:
   \label{eq:tetnienia-bip}
 \end{equation}
 
-\subsubsection*{Modulacja unipolarna}
+\subsubsection*{Modulacja jednobiegunowa (unipolarna)}
 
 W~modulacji unipolarnej (jednobiegunowej) każda gałąź mostka sterowana
 jest niezależnie. Gałąź~a przełączana jest na podstawie porównania sygnału
@@ -532,11 +555,7 @@ sygnałów sterujących oraz to, że potencjał wspólny obu zacisków wyjściow
 względem obwodu pośredniczącego, $u_\mathrm{cm} = (u_\mathrm{aN} +
 u_\mathrm{bN})/2$, zmienia się skokowo z~częstotliwością łączeń. Ma to
 znaczenie np.~w~beztransformatorowych falownikach fotowoltaicznych, gdzie
-składowa wspólna wymusza przepływ prądu upływu~\cite[s.~5--15]{teodorescu2011}. Spotyka się
-również wariant hybrydowy, w~którym jedna gałąź przełączana jest
-z~częstotliwością podstawową $f_1$, a~modulacja PWM realizowana jest tylko
-w~drugiej gałęzi, co zmniejsza straty łączeniowe kosztem większych niż w~modulacji
-unipolarnej tętnień prądu~\cite[s.~200--206]{holmes2003}. Właściwości obu omówionych metod zestawiono
+składowa wspólna wymusza przepływ prądu upływu~\cite[s.~5--15]{teodorescu2011}. Właściwości obu omówionych metod zestawiono
 w~tabeli~\ref{tab:porownanie-pwm}.
 
 \begin{table}[htbp]
@@ -579,13 +598,6 @@ pomijalne~\cite[podrozdz.~3.6]{holmes2003}. Liczniki przeznaczone do sterowania
 przekształtnikami mają zazwyczaj wbudowane generatory komplementarnych
 sygnałów z~programowanym czasem martwym oraz wejścia awaryjnego
 wyłączenia, co upraszcza realizację zabezpieczeń.
-
-Oprócz modulacji komparacyjnej stosuje się również inne metody, m.in.~modulację
-z~eliminacją wybranych harmonicznych (ang.~\textit{Selective Harmonic
-Elimination}, SHE), w~której kąty przełączeń wyznacza się analitycznie lub
-numerycznie, oraz metody z~bezpośrednią regulacją prądu, np.~regulację
-histerezową, w~której częstotliwość łączeń nie jest
-stała~\cite[podrozdz.~8-6]{mohan2003}.
 
 % ---------------------------------------------------------------------
 \section{Zastosowania falowników w~energoelektronice}
